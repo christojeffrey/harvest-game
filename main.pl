@@ -3,7 +3,6 @@
 % include fakta global
 :- include('globalFact.pl').
 
-
 % include startGame
 :- include('ruleStartGame.pl').
 

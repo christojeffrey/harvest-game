@@ -28,3 +28,9 @@
 
 % fakta mengenai inventory
 :- dynamic(inventoryList/1).
+
+% fakta mengenai time
+:- dynamic(currentTime/1).
+
+% fakta mengenai day
+:- dynamic(currentDay/1).
