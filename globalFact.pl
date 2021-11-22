@@ -10,11 +10,9 @@
 :- dynamic(gold/1).
 :- dynamic(exp/1).
 
-% --fakta mengenai map--
-:- dynamic(barisMap/1).
-:- dynamic(kolomMap/1).
-
-% dua parameter disini berkorespondensi dengan baris dan kolom, secara terurut.
+% fakta mengenai map
+:- dynamic(lebarMap/1).
+:- dynamic(tinggiMap/1).
 :- dynamic(playerLoc/2).
 :- dynamic(marketPlaceLoc/2).
 :- dynamic(ranchLoc/2).

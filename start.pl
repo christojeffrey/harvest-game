@@ -25,6 +25,15 @@ getClass(Class) :-
     ((Class == 1, assertz(class(farmer)));
     (Class == 2, assertz(class(fisherman)));
     (Class == 3, assertz(class(rancher)))),
+    assertz(level(0)),
+    assertz(levelFarming(0)),
+    assertz(levelFishing(0)),
+    assertz(levelRanching(0)),
+    assertz(exp(0)),
+    assertz(expFarming(0)),
+    assertz(expFishing(0)),
+    assertz(expRanching(0)),
+    assertz(gold(0)),
     write('Selamat Jeff! Anda sekarang adalah seorang '),
     class(X), write(X).
 
