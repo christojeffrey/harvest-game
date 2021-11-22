@@ -60,7 +60,9 @@ fail tercapai kalau hari sudah menembus 1 tahun(ntah ngitungnya gimana). di impl
 ---
 
 yg belom dicover\
-urusan inventory dengan item.
+
+- urusan inventory dengan item.
+- inventory apa saja yang tersedia.
 
 ---
 
