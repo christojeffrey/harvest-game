@@ -6,9 +6,12 @@
 % include startGame
 :- include('ruleStartGame.pl').
 
+%include help
+:- include('ruleHelp.pl').
+
 %i include rule yang dapat diakses setelah startGame
 :- include('start.pl').
 
 % include rule yang dapat diakses berdasarkan lokasi saat ini
-
+:- include('ruleHouse.pl').
 %include fakta2 tambahan untuk rule
