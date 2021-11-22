@@ -34,6 +34,15 @@ getClass(Class) :-
     assertz(expFishing(0)),
     assertz(expRanching(0)),
     assertz(gold(0)),
+    assertz(farmItems(wheat)),
+    assertz(farmItems(corn)),
+    assertz(farmItems(carrot)),
+    assertz(fishItems(salmon)),
+    assertz(fishItems(tuna)),
+    assertz(fishItems(catfish)),
+    assertz(ranchItems(wool)),
+    assertz(ranchItems(milk)),
+    assertz(ranchItems(egg)),
     write('Selamat Jeff! Anda sekarang adalah seorang '),
     class(X), write(X).
 

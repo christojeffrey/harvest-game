@@ -1,8 +1,8 @@
 % digunakan untuk menampilkan map, dan untuk berpindah.
 
 % include fakta global
-%:- include('globalFact.pl').
-
+:- include('globalFact.pl').
+:- include('globalRule.pl').
 %map :- write('ini map').
 
 %w :- %write('kamu bergerak ke arah utara sebanyak 1 tile').

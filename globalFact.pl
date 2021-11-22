@@ -24,13 +24,18 @@
 % terdapat tiga parameter. baris, kolom, dan juga nama tanaman. contoh (1,5,corn), artinya di baris 1, kolom 5, dan yang di tanam adalah corn
 :- dynamic(plantedLoc/3). 
 
+% fakta tentang items
+:- dynamic(farmItems/1).
+:- dynamic(fishItems/1).
+:- dynamic(ranchItems/1).
+
 % --fakta mengenai quest--
-:- dynamic(checkQuest/1).
-:- dynamic(quest/3).
-:- dynamic(submitQuest/3).
+:- dynamic(checkQuest/0).
+:- dynamic(quest/6).
+:- dynamic(submitQuest/6).
 
 % --fakta mengenai inventory--
-:- dynamic(inventoryList/1).
+:- dynamic(inventoryList/3).
 
 % --fakta mengenai time--
 :- dynamic(currentTime/1).
