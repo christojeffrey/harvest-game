@@ -24,6 +24,11 @@
 % terdapat tiga parameter. baris, kolom, dan juga nama tanaman. contoh (1,5,corn), artinya di baris 1, kolom 5, dan yang di tanam adalah corn
 :- dynamic(plantedLoc/3). 
 
+% fakta tentang items
+:- dynamic(farmItems/1).
+:- dynamic(fishItems/1).
+:- dynamic(ranchItems/1).
+
 % --fakta mengenai quest--
 :- dynamic(checkQuest/0).
 :- dynamic(quest/6).
@@ -40,15 +45,3 @@
 
 % fakta mengenai 'rule yang dapat diakses'. saat game berlangsung, hanya ada boleh satu satu buah fakta ini. jadi jangan lupa melakukan retract jika ingin melakukan penggantian
 :- dynamic(playerState/1).
-
-farmItems(wheat).
-farmItems(corn).
-farmItems(carrot).
-
-fishItems(tuna).
-fishItems(salmon).
-fishItems(catfish).
-
-ranchItems(wool).
-ranchItems(egg).
-ranchItems(milk).
