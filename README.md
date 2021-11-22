@@ -11,6 +11,8 @@ Christopher Jeffrey 13520055
 
 ## urutan rule yang dapat diakses
 
+`help.` bisa digunakan kapanpun. help yang diberikan tergantung status saat ini
+
 1. **rule yang harus diakses pertama kali**
 
    - `startGame.`\
@@ -19,9 +21,8 @@ Christopher Jeffrey 13520055
 2. **rule yang dapat diakses setelah startGame**
 
    - `start.`\
-     menentukan class (fisherman, farmer, dkk)\
+     menentukan class (fisherman, farmer, dkk)
    - ` map.`
-   - `help.`
 
 3. **rule yang dapat diakses setelah start**\
     _rule disini memiliki akses terhadap globalFact yang sudah di set oleh startGame_
@@ -37,12 +38,12 @@ Christopher Jeffrey 13520055
      (masih gk ngerti bedanya apa sama item, tpi pokoknya ada inventory)
 
 4. **rule yang dapat diakses berdasarkan lokasi saat ini(LIHAT SPEK BUAT LEBIH JELASNYA)**\
-   _rule disini memiliki akses terhadap globalFact yang sudah di set oleh startGame_ **dan juga rule yang dibuat untuk dirinya sendiri**
+   _rule disini memiliki akses terhadap globalFact dan yang sudah di set oleh startGame, juga globalRule_ **dan juga rule yang dibuat untuk dirinya sendiri**
    - `quest.`
    - `market.`
    - `house.`
    - `ranch.`
-   - `river.`
+   - `fish.`
    - urusan farm
      `dig.`
      `plant.`
@@ -50,11 +51,18 @@ Christopher Jeffrey 13520055
 
 ---
 
-yg belom dicover\
 `goalState.`\
-`failState.`
+goal tercapai ketika player mempunyai uang dengan jumlah minimal tertentu. jadi,
+dilakukan pengecekan terhadap uang player ketika dia mendapatkan uang. Harusnya ini cuman terjadi di market.\
+`failState.`\
+fail tercapai kalau hari sudah menembus 1 tahun(ntah ngitungnya gimana). di implemen di dalam house.\
 
 ---
 
-waktu membuat rule (misalnya quest), kan dapat membuat rule sendiri, nah itu silakan dibikin didalem file itu sendiri(misanya ruleQuest.pl), atau membuat file baru (factQuest.pl). kalau menurutmu bakal dipake sama rule2 lainnya, silakan taruh di globalFact(tambahi dibawah trus comment sebgai pembatas dulu ya, misall `% fakta quest`).\
+yg belom dicover\
+urusan inventory dengan item.
+
+---
+
+waktu membuat rule (misalnya quest), kan dapat membuat rule sendiri, nah itu silakan dibikin didalem file itu sendiri(misanya ruleQuest.pl), atau membuat file baru (factQuest.pl). kalau menurutmu bakal dipake sama rule2 lainnya, silakan taruh di globalFact(tambahi dibawah trus comment sebgai pembatas dulu ya, misal `% fakta quest`). ini berlaku juga buat globalRule.\
 pemilihan ini hampir murni biar rapi aja(tapi ya kalo rapi endingnya ngecode nya jadi lebih gampang).
