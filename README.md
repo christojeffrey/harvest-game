@@ -11,7 +11,7 @@ Christopher Jeffrey 13520055
 
 ## urutan rule yang dapat diakses
 
-`help.` bisa digunakan kapanpun. help yang diberikan tergantung status saat ini
+`help.` bisa digunakan kapanpun. help yang diberikan tergantung playerState saat ini
 
 1. **rule yang harus diakses pertama kali**
 
