@@ -24,7 +24,7 @@ addItem(Item, 1, Level) :-
 addItem(Item, 1, Level) :- 
     inventoryList(Item, ItemCount, _),
     retract(inventoryList(Item, _, _)),
-    asserta(inventoryList(Item, ItemCount + 1, Level)).
+    asserta(inventoryList(Item, ItemCount + 1, Level)),
     retract(inventoryCount(Count)),
     asserta(inventoryCount(Count + 1)).
     
@@ -34,13 +34,17 @@ addItem(Item, Count, Level) :-
     addItem(Item, NewCount, Level).
     
 % Delete item from inventory
+deleteItem(_, Count, _) :-
+    inventoryCount(CurrCount),
+    CurrCount - Count < 0, fail.
+
 deleteItem(Item, 1, _) :-
     \+inventoryList(Item, _, _), !, fail.
 
 deleteItem(Item, 1, Level) :-
     inventoryList(Item, ItemCount, _),
     retract(inventoryList(Item, _, _)),
-    asserta(inventoryList(Item, ItemCount - 1, Level)).
+    asserta(inventoryList(Item, ItemCount - 1, Level)),
     retract(inventoryCount(Count)),
     asserta(inventoryCount(Count - 1)).
 
