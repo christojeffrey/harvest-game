@@ -59,10 +59,31 @@ fail tercapai kalau hari sudah menembus 1 tahun(ntah ngitungnya gimana). di impl
 
 ---
 
-yg belom dicover\
+inventory yang tersedia. kita kunci dulu biar gk beda2 semua
+
+**FARM**
+
+- corn
+- carrot
+- wheath
+
+**FISH**
+
+- tuna
+- salmon
+- catfish
+
+**RANCH**
+
+- wool
+- egg
+- milk
+
+---
+
+yg belom dicover
 
 - urusan inventory dengan item.
-- inventory apa saja yang tersedia.
 
 ---
 
