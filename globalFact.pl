@@ -27,12 +27,12 @@
 :- dynamic(plantedLoc/3). 
 
 % --fakta mengenai quest--
-:- dynamic(checkQuest/1).
-:- dynamic(quest/3).
-:- dynamic(submitQuest/3).
+:- dynamic(checkQuest/0).
+:- dynamic(quest/6).
+:- dynamic(submitQuest/6).
 
 % --fakta mengenai inventory--
-:- dynamic(inventoryList/1).
+:- dynamic(inventoryList/3).
 
 % --fakta mengenai time--
 :- dynamic(currentTime/1).
@@ -42,3 +42,15 @@
 
 % fakta mengenai 'rule yang dapat diakses'. saat game berlangsung, hanya ada boleh satu satu buah fakta ini. jadi jangan lupa melakukan retract jika ingin melakukan penggantian
 :- dynamic(playerState/1).
+
+farmItems(wheat).
+farmItems(corn).
+farmItems(carrot).
+
+fishItems(tuna).
+fishItems(salmon).
+fishItems(catfish).
+
+ranchItems(wool).
+ranchItems(egg).
+ranchItems(milk).
