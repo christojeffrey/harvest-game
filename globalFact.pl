@@ -11,8 +11,8 @@
 :- dynamic(exp/1).
 
 % fakta mengenai map
-:- dynamic(barisMap/1).
-:- dynamic(kolomMap/1).
+:- dynamic(lebarMap/1).
+:- dynamic(tinggiMap/1).
 :- dynamic(playerLoc/2).
 :- dynamic(marketPlaceLoc/2).
 :- dynamic(ranchLoc/2).
