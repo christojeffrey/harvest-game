@@ -65,7 +65,7 @@ inventory yang tersedia. kita kunci dulu biar gk beda2 semua
 
 - corn
 - carrot
-- wheath
+- wheat
 
 **FISH**
 
