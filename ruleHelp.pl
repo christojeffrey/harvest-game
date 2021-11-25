@@ -10,3 +10,5 @@ help :- playerState('start'), !, write('bisa jalan, cek map, explore').
 help :- playerState('house'), !, write('di dalam house').
 
 help :- playerState('market'), !, write('di dalam market').
+
+help :- playerState('ranch'), !, write('di dalam ranch').
