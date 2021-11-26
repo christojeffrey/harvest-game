@@ -1,5 +1,5 @@
 % untuk menyimpan rule yang relaitf umum dan bisa digunakan untuk lebih dari satu command
-:- include('globalFact.pl').
+% :- include('globalFact.pl').
 
 % rule untuk input
 
@@ -42,12 +42,12 @@ addTimeByX(X) :-
 
 % jangan pake isCommandAllowed di move w a s d ya, nti dia gabisa pulang :v
 
-% untuk saat ini, batas time dalam satu hari adalah 20
+% untuk saat ini, batas time dalam satu hari adalah 24 (kek 24 jam)
 isCommandAllowed :-
-    currentTime(X), X >= 20, write('harimu sudah habis! kerumah trus bobok yah\n'), fail.
+    currentTime(X), X >= 24, write('harimu sudah habis! kerumah trus bobok yah\n'), fail.
 
 
-% -----rule untuk inventory-----
+% -----rule untuk item-----
 
 % (seperti) fungsi untuk menjumlahkan dari masing-masing item. (seperti) mengembalikan nilai Hasil, yaitu total semua hal di bagian item.
 totalItemCount(Hasil):-
@@ -69,7 +69,8 @@ changeItemLevel(EqName, AmountAdded) :-
     TheItem \== [], TheItem  = [TheItemName, TheItemCount, TheItemLevel], 
     NewLevel is TheItemLevel + AmountAdded,
     items(AllItems),
-    helperChangeItemCountOrLevel(2, AllItems, [TheItemName, TheItemCount, NewLevel],ItemListNew),
+    length(AllItems, Panjang),
+    helperChangeItemCountOrLevel(Panjang, AllItems, [TheItemName, TheItemCount, NewLevel],ItemListNew),
     retract(items(_)),
     assertz(items(ItemListNew)).
 
@@ -77,24 +78,25 @@ changeItemLevel(EqName, AmountAdded) :-
 % (seperti) prosedur untuk mencari Equipment EqName, lalu menambahkan sebanyak AmountAdded pada bagian count(AmountAdded bisa bernilai negatif). equipment harus ada di dalam item list. kalau eqName tidak ada, fungsi gabakal ngelakuin apa2. 
 
 % salah satu penggunaan, bisa dipake di market
-changeItemCount(EqName, AmountAdded) :-
-    findItem(EqName, TheItem),
+changeItemCount(ItName, AmountAdded) :-
+    findItem(ItName, TheItem),
     TheItem \== [], TheItem  = [TheItemName, TheItemCount, TheItemLevel], 
     NewCount is TheItemCount + AmountAdded,
     items(AllItems),
-    helperChangeItemCountOrLevel(2, AllItems, [TheItemName, NewCount, TheItemLevel],ItemListNew),
+    length(AllItems, Panjang),
+    helperChangeItemCountOrLevel(Panjang, AllItems, [TheItemName, NewCount, TheItemLevel],ItemListNew),
     retract(items(_)),
     assertz(items(ItemListNew)).
 
-helperChangeItemCountOrLevel(Counter, ItemList, NewItem, ItemListNew) :-
+helperChangeItemCountOrLevel(Counter, _, _, ItemListNew) :-
     Counter = 0 , ItemListNew = [],!.
 
 helperChangeItemCountOrLevel(Counter, ItemList, NewItem, ItemListNew) :-
     NewCounter is Counter - 1, 
     helperChangeItemCountOrLevel(NewCounter, ItemList, NewItem, ItemListNewPrev),
     nth1(Counter, ItemList, ItemAtCounter), 
-    ItemAtCounter = [NameIAC, CountIAC, LevelIAC], 
-    NewItem = [NameNI, CountNI, LevelNI],
+    ItemAtCounter = [NameIAC, _, _], 
+    NewItem = [NameNI, _, _],
     (NameIAC = NameNI -> 
         append(ItemListNewPrev, [NewItem], ItemListNew);
         append(ItemListNewPrev, [ItemAtCounter], ItemListNew)
@@ -114,9 +116,9 @@ findItem(ItemName, ItemNameCountLevel) :-
     items(AllItems),
     helperFindItem(ItemName, AllItems, ItemNameCountLevel).
 
-helperFindItem(ItemNameQuery, ItemList, ItemNameCountLevel) :-
+helperFindItem(_, ItemList, ItemNameCountLevel) :-
     ItemList = [], ItemNameCountLevel = [],!. 
 
 helperFindItem(ItemNameQuery, ItemList, ItemNameCountLevel) :-
-    ItemList = [H | T], H = [ItemName, ItemCount, ItemLevel],
+    ItemList = [H | T], H = [ItemName, _, _],
     (ItemName = ItemNameQuery -> ItemNameCountLevel = H; helperFindItem(ItemNameQuery, T, ItemNameCountLevel)). 

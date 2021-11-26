@@ -66,6 +66,7 @@ ada **barang**. barang kita bikin gapunya level aja ya, ini pilihan barangnya.
 
 **FARM**
 
+- seed
 - corn
 - carrot
 - wheat
@@ -81,6 +82,9 @@ ada **barang**. barang kita bikin gapunya level aja ya, ini pilihan barangnya.
 - wool
 - egg
 - milk
+- chicken
+- cow
+- sheep
 
 kedua ada **equipment**. ini condong ke tool. sementara bikin dua dulu,
 

@@ -2,22 +2,17 @@
 % dimulai dari rule 'house.'. untuk bisa elkaukan hal tersebut, playerState harus start.
 % untuk bisa menjalankan command turunan house, playerState harus 'house.'
 
-% jeff
-:- include('globalFact.pl').
-
 % fact
 :- dynamic(diary/2).
-
-% temporary
-set :- assertz(playerState('start')),
-assertz(currentDay(1)).
 
 % rule
 house :-
     % playerLoc(Baris, Kolom), houseLoc(Baris,Kolom),!,
     retract(playerState(_)),
     assertz(playerState('house')),
-    write('welcome home!'),
+    write('welcome home!\n'),
+    currentDay(DayNow),
+    write('it\'s day '), write(DayNow),nl,
     write('what do you want to do?\n'),
     write('- sleep\n'),
     write('- writeDiary\n'),
@@ -35,9 +30,11 @@ sleep :-
     CDnew is CD + 1,
     retract(currentDay(CD)),
     assertz(currentDay(CDnew)),
+    retract(currentTime(_)),
+    assertz(currentTime(7)),
     failState,
     write('day '),write(CDnew),write('\n'),
-    write('exit the house, explore, and soon you will be able to pay your debt!\n').
+    write('masih pukul 7 pagi, exit the house, explore, and soon you will be able to pay your debt!\n').
 
 sleep :-
     write('kamu sedang tidak di rumah. pulang dulu baru bisa bobok\n').

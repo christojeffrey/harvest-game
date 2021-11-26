@@ -15,5 +15,6 @@
 % include rule yang dapat diakses berdasarkan lokasi saat ini
 :- include('ruleHouse.pl').
 :- include('ruleMarket.pl').
-:- include('ruleMap.pl').
+% :- include('ruleMap.pl').
+:- include('ruleInventory.pl').
 %include fakta2 tambahan untuk rule

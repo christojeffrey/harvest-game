@@ -10,28 +10,6 @@
 %s :- %write('kamu bergerak ke arah selatan sebanyak 1 tile').
 %d :- %write('kamu bergerak ke arah timur sebanyak 1 tile').
 
-initMap:-
-    random(10,20,X),
-    random(10,20,Y),
-    retract(lebarMap(_)),
-    asserta(lebarMap(X)),
-    retract(tinggiMap(_))
-    asserta(tinggiMap(Y)),    
-    retract(playerLoc(_,_)),
-    asserta(playerLoc(1,1)),
-    generateLand.
-
-generateLand:-
-    asserta(questLoc(4,7)),
-    asserta(marketPlaceLoc(7,7)),
-    asserta(ranchLoc(3,3)),
-    asserta(houseLoc(5,5)),
-
-    asserta(waterLoc(3,9)),
-    asserta(waterLoc(2,9)),
-    asserta(waterLoc(4,9)),
-    asserta(waterLoc(4,8)),
-    asserta(waterLoc(3,7)).
 
 isBorderAtas(_,H):- H=:=0,!.
 isBorderBawah(_,H):- Y is H-1, tinggiMap(Y),!.
