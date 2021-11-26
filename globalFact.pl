@@ -25,17 +25,13 @@
 :- dynamic(plantedLoc/3). 
 
 % fakta tentang items
-:- dynamic(farmItems/1).
-:- dynamic(fishItems/1).
-:- dynamic(ranchItems/1).
+% items(name, count, level).
+:- dynamic(items/1).
 
 % --fakta mengenai quest--
 :- dynamic(checkQuest/0).
 :- dynamic(quest/6).
 :- dynamic(submitQuest/6).
-
-% --fakta mengenai inventory--
-:- dynamic(inventoryList/3).
 
 % --fakta mengenai time--
 :- dynamic(currentTime/1).

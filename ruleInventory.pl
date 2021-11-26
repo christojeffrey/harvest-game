@@ -1,54 +1,51 @@
-% include fakta global
+% include global
 :- include('globalFact.pl').
+ :- include('globalRule.pl').
+% jadinya inventory itu cuman command, 'benda fisiknya 'dan semuanya disebut item.
+% item terdiri dari barang dan equipment  
 
-:- dynamic(inventoryCount/1).
 
-initInventory :- 
-    asserta(inventoryCount(0)).
 
-% Display inventory
-% inventory :- !.
+barangAndEquipmentNameList(['fishing rod', 'shovel', 'tuna', 'salmon', 'catfish', 'corn', 'carrot', 'wheat', 'wool', 'egg', 'milk']).
 
-% Add item to inventory
-addItem(_, Count, _) :-
-    inventoryCount(CurrCount),
-    CurrCount + Count > 100, fail.
 
-addItem(Item, 1, Level) :-
-    \+inventoryList(Item, _, _),
-    asserta(inventoryList(Item, 1, Level)),
-    retract(inventoryCount(Count)),
-    asserta(inventoryCount(Count + 1)).
-    
+setInventory :-
+    write('set Inventory Command\n'),
+    assertz(items([])),
+    barangAndEquipmentNameList(ItemNameList),
+    initializingItems(ItemNameList),
+    write('sudah di initialize\n').
 
-addItem(Item, 1, Level) :- 
-    inventoryList(Item, ItemCount, _),
-    retract(inventoryList(Item, _, _)),
-    asserta(inventoryList(Item, ItemCount + 1, Level)),
-    retract(inventoryCount(Count)),
-    asserta(inventoryCount(Count + 1)).
-    
-addItem(Item, Count, Level) :-
-    addItem(Item, 1, Level),
-    NewCount is Count - 1,
-    addItem(Item, NewCount, Level).
-    
-% Delete item from inventory
-deleteItem(_, Count, _) :-
-    inventoryCount(CurrCount),
-    CurrCount - Count < 0, fail.
+initializingItems(List) :-
+    List = [],!.
+initializingItems(List) :-
+    List = [H|T], items(Prev), append(Prev,[[H,1,0]], New), retract(items(_)), assertz(items(New)), initializingItems(T).
 
-deleteItem(Item, 1, _) :-
-    \+inventoryList(Item, _, _), !, fail.
 
-deleteItem(Item, 1, Level) :-
-    inventoryList(Item, ItemCount, _),
-    retract(inventoryList(Item, _, _)),
-    asserta(inventoryList(Item, ItemCount - 1, Level)),
-    retract(inventoryCount(Count)),
-    asserta(inventoryCount(Count - 1)).
 
-deleteItem(Item, Count, Level) :-
-    deleteItem(Item, 1, Level),
-    NewCount is Count - 1,
-    deleteItem(Item, NewCount, Level).
+inventory :-
+    write('here\'s all of the item that you have!\n'),
+    writeAllItems.
+ 
+
+
+
+% write all item disesuaikan dengan spek
+% contoh output
+% - 1 Level 1 shovel
+% - 3 Carrot
+% - 4 Corn
+writeAllItems :-
+    items(AllItems),
+    helperWriteItem(AllItems).
+
+
+% fungsi atau prosedur perantara dari writeAlItems.
+helperWriteItem(ItemList) :-
+    ItemList = [],!.
+helperWriteItem(ItemList) :-
+    ItemList = [H|T], H = [ItemName, ItemCount, ItemLevel], (ItemCount = 0 -> write('');
+    write('- '), write(ItemCount), write(' buah '),
+    (ItemLevel = 0 -> write(''); write(ItemLevel), write(' level ')),
+    write(ItemName), nl
+    ), helperWriteItem(T).

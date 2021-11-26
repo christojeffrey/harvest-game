@@ -16,12 +16,12 @@ Christopher Jeffrey 13520055
 1. **rule yang harus diakses pertama kali**
 
    - `startGame.`\
-     menampilkan menu. Set globalvariabel dasar(level - 1, dst)
+     menampilkan menu. udah itu aja.
 
 2. **rule yang dapat diakses setelah startGame**
 
    - `start.`\
-     menentukan class (fisherman, farmer, dkk)
+     menentukan class (fisherman, farmer, dkk). assert semua variabel juga.
    - ` map.`
 
 3. **rule yang dapat diakses setelah start**\
@@ -59,7 +59,10 @@ fail tercapai kalau hari sudah menembus 1 tahun(ntah ngitungnya gimana). di impl
 
 ---
 
-inventory yang tersedia. kita kunci dulu biar gk beda2 semua
+## Item
+
+kita kunci dulu biar gk beda2 semua. jangan bikin sendiri2, nti beda2.
+ada **barang**. barang kita bikin gapunya level aja ya, ini pilihan barangnya.
 
 **FARM**
 
@@ -79,11 +82,12 @@ inventory yang tersedia. kita kunci dulu biar gk beda2 semua
 - egg
 - milk
 
----
+kedua ada **equipment**. ini condong ke tool. sementara bikin dua dulu,
 
-yg belom dicover
+- fishing rod, fishing rod sebagai tool buat mancing.
+- shovel, shovel sebagai tool buat farming.
 
-- urusan inventory dengan item.
+kalo bingung bedanya inventory sama item, item itu beneran nyimpennya, kek variabelnya. inventory itu commandnya.
 
 ---
 

@@ -45,3 +45,78 @@ addTimeByX(X) :-
 % untuk saat ini, batas time dalam satu hari adalah 20
 isCommandAllowed :-
     currentTime(X), X >= 20, write('harimu sudah habis! kerumah trus bobok yah\n'), fail.
+
+
+% -----rule untuk inventory-----
+
+% (seperti) fungsi untuk menjumlahkan dari masing-masing item. (seperti) mengembalikan nilai Hasil, yaitu total semua hal di bagian item.
+totalItemCount(Hasil):-
+    items(AllItems),
+    helperTotalItemCount(AllItems, Hasil).
+
+% fungsi perantara totalItemCount
+helperTotalItemCount(ItemList, Hasil) :-
+    ItemList = [], Hasil = 0, !.
+helperTotalItemCount(ItemList, Hasil) :-
+    ItemList = [H | T], helperTotalItemCount(T, HasilPrev), H = [_,ItemCount,_], Hasil is HasilPrev + ItemCount.
+
+
+% (seperti) prosedur untuk mencari Equipment EqName, lalu menambahkan sebanyak AmountAdded pada bagian levelnya(AmountAdded bisa bernilai negatif). equipment harus ada di dalam item list. kalau eqName tidak ada, fungsi gabakal ngelakuin apa2. 
+
+% salah satu penggunaan, bisa dipake di market
+changeItemLevel(EqName, AmountAdded) :-
+    findItem(EqName, TheItem),
+    TheItem \== [], TheItem  = [TheItemName, TheItemCount, TheItemLevel], 
+    NewLevel is TheItemLevel + AmountAdded,
+    items(AllItems),
+    helperChangeItemCountOrLevel(2, AllItems, [TheItemName, TheItemCount, NewLevel],ItemListNew),
+    retract(items(_)),
+    assertz(items(ItemListNew)).
+
+
+% (seperti) prosedur untuk mencari Equipment EqName, lalu menambahkan sebanyak AmountAdded pada bagian count(AmountAdded bisa bernilai negatif). equipment harus ada di dalam item list. kalau eqName tidak ada, fungsi gabakal ngelakuin apa2. 
+
+% salah satu penggunaan, bisa dipake di market
+changeItemCount(EqName, AmountAdded) :-
+    findItem(EqName, TheItem),
+    TheItem \== [], TheItem  = [TheItemName, TheItemCount, TheItemLevel], 
+    NewCount is TheItemCount + AmountAdded,
+    items(AllItems),
+    helperChangeItemCountOrLevel(2, AllItems, [TheItemName, NewCount, TheItemLevel],ItemListNew),
+    retract(items(_)),
+    assertz(items(ItemListNew)).
+
+helperChangeItemCountOrLevel(Counter, ItemList, NewItem, ItemListNew) :-
+    Counter = 0 , ItemListNew = [],!.
+
+helperChangeItemCountOrLevel(Counter, ItemList, NewItem, ItemListNew) :-
+    NewCounter is Counter - 1, 
+    helperChangeItemCountOrLevel(NewCounter, ItemList, NewItem, ItemListNewPrev),
+    nth1(Counter, ItemList, ItemAtCounter), 
+    ItemAtCounter = [NameIAC, CountIAC, LevelIAC], 
+    NewItem = [NameNI, CountNI, LevelNI],
+    (NameIAC = NameNI -> 
+        append(ItemListNewPrev, [NewItem], ItemListNew);
+        append(ItemListNewPrev, [ItemAtCounter], ItemListNew)
+    ).
+
+
+% (seperti) fungsi untuk mencari ItemName, lalu mengembalikan item tersebut lengkap dengan count dan level. mengembalikan list kosong jika nama tidak ada. Hanya untuk mendapatkan info. 
+% contoh
+% findItem('corn', CornItem).
+% CornItem = ['corn', 1, 0]. 
+% findItem('titit gajah', ItemTititGajah).
+% ItemTititGajah = [].
+% iya nama itemnya gitu, santai dikit lah jangan tegang
+% contoh penggunaan : bisa dipake buat ngecek level sebuah item, buat nentuin efeknya.
+
+findItem(ItemName, ItemNameCountLevel) :-
+    items(AllItems),
+    helperFindItem(ItemName, AllItems, ItemNameCountLevel).
+
+helperFindItem(ItemNameQuery, ItemList, ItemNameCountLevel) :-
+    ItemList = [], ItemNameCountLevel = [],!. 
+
+helperFindItem(ItemNameQuery, ItemList, ItemNameCountLevel) :-
+    ItemList = [H | T], H = [ItemName, ItemCount, ItemLevel],
+    (ItemName = ItemNameQuery -> ItemNameCountLevel = H; helperFindItem(ItemNameQuery, T, ItemNameCountLevel)). 

@@ -1,3 +1,5 @@
+% set semua variabel terjadi di rule ini
+
 % Include file globalFact.pl
 :- include('globalFact.pl').
 :- include('globalRule.pl').
