@@ -17,4 +17,6 @@
 :- include('ruleMarket.pl').
 % :- include('ruleMap.pl').
 :- include('ruleInventory.pl').
+:- include('ruleRanch.pl').
+:- include('ruleFarm.pl').
 %include fakta2 tambahan untuk rule

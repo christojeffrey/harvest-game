@@ -31,10 +31,11 @@ sleep :-
     retract(currentDay(CD)),
     assertz(currentDay(CDnew)),
     retract(currentTime(_)),
-    assertz(currentTime(7)),
+    assertz(currentTime(6)),
     failState,
     write('day '),write(CDnew),write('\n'),
-    write('masih pukul 7 pagi, exit the house, explore, and soon you will be able to pay your debt!\n').
+    write('masih pukul 6 pagi, exit the house, explore, and soon you will be able to pay your debt!\n'),
+    clearRanched.
 
 sleep :-
     write('kamu sedang tidak di rumah. pulang dulu baru bisa bobok\n').
@@ -94,3 +95,13 @@ exitHouse :-
     assertz(playerState('start')).
 exitHouse :- 
     write('kamu tidak sedang di rumah.\n').
+
+% buat perintah reset ranched.
+clearRanched :-
+    % di set dulu semua, biar kalo retract dan item gada, gk false.
+    assertz(chickenRanched),
+    assertz(sheepRanched),
+    assertz(cowRanched),
+    retractall(chickenRanched),
+    retractall(sheepRanched),
+    retractall(cowRanched).
