@@ -4,6 +4,7 @@
 :- include('globalFact.pl').
 :- include('globalRule.pl').
 :- include('ruleFishing.pl').
+:- include('ruleMap.pl').
 % Fact untuk Comparison Input Class
 checkClass(1).
 checkClass(2).
@@ -72,6 +73,7 @@ initMap:-
     retractall(ranchLoc(_,_)),
     retractall(houseLoc(_,_)),
     retractall(waterLoc(_,_)),
+    retractall(diggedLoc(_,_)),
     generateLand,!.
 
 generateLand:-
@@ -82,19 +84,41 @@ generateLand:-
     T1 is T+2,
     L1 is X-3,
     T2 is Y-3,
+    YZ is Y-1,
     asserta(questLoc(L,T2)),
-    asserta(waterLoc(_,1)),
+    asserta(diggedLoc(1,Y)),
+    asserta(diggedLoc(2,Y)),
+    asserta(diggedLoc(3,Y)),
+    asserta(diggedLoc(4,Y)),
+    asserta(diggedLoc(5,Y)),
+    asserta(diggedLoc(6,Y)),
+    asserta(diggedLoc(1,YZ)),
+    asserta(diggedLoc(2,YZ)),
+    asserta(diggedLoc(3,YZ)),
+    asserta(diggedLoc(4,YZ)),
+    asserta(diggedLoc(5,YZ)),
+    asserta(diggedLoc(6,YZ)),
+    asserta(diggedLoc(6,Y)),
+    asserta(diggedLoc(6,YZ)),
+    asserta(diggedLoc(7,YZ)),
+    asserta(diggedLoc(7,Y)),
     asserta(marketPlaceLoc(L1,T1)),
     asserta(ranchLoc(3,3)),
     asserta(houseLoc(L,T)),
     asserta(playerLoc(L,T)),
+    asserta(waterLoc(_,1)),
     asserta(waterLoc(3,9)),
+    asserta(waterLoc(1,9)),    
     asserta(waterLoc(2,9)),
     asserta(waterLoc(4,9)),
     asserta(waterLoc(3,10)),
     asserta(waterLoc(4,8)),
     asserta(waterLoc(3,8)),
-    asserta(waterLoc(3,7)),!.
+    asserta(waterLoc(1,8)),
+    asserta(waterLoc(2,8)), 
+    asserta(waterLoc(3,7)),
+    asserta(waterLoc(2,7)),
+    asserta(waterLoc(2,10)),!.
 
 % Ini buat assertz Classnya
 getClass(Class) :-

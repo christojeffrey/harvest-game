@@ -12,9 +12,9 @@
 
 
 isBorderAtas(_,H):- H=:=0,!.
-isBorderBawah(_,H):- Y is H, tinggiMap(Y),!.
+isBorderBawah(_,H):- Y is H-1, tinggiMap(Y),!.
 isBorderKiri(L,_):- L=:=0,!.
-isBorderKanan(L,_):- X is L, lebarMap(X),!.
+isBorderKanan(L,_):- X is L-1, lebarMap(X),!.
 
 
 
@@ -59,6 +59,10 @@ printCoord(X,Y):-
     questLoc(X,Y),!,
     write('Q').
 
+printCoord(X,Y):-
+    diggedLoc(X,Y),!,
+    write('=').
+
 printCoord(_,_):-
     write('-').
 
@@ -77,8 +81,8 @@ printMap:-
     lebarMap(L),
     X is 0,
     Y is 0,
-    Xmax is L,
-    Ymax is T,
+    Xmax is L+1,
+    Ymax is T+1,
     forall(between(Y, Ymax, I),(
         forall(between(X,Xmax,J),(
             printCoord(J,I)
@@ -139,10 +143,10 @@ s:-
     write('Ati-ati nyebur..').
 
 s:-
-    retractall(playerLoc(X,Y)),
+    playerLoc(X,Y),
     Y1 is Y+1,
-    asserta(playerLoc(X,Y1)),
-    !.
+    retractall(playerLoc(X,Y)),
+    asserta(playerLoc(X,Y1)),!.
 
 a:-
     playerLoc(X,Y),
@@ -156,11 +160,10 @@ a:-
     waterLoc(X1,Y),
     write('Ati-ati nyebur..').
 a:-
-    retractall(playerLoc(X,Y)),
+    playerLoc(X,Y),
     X1 is X-1,
+    retractall(playerLoc(X,Y)),
     asserta(playerLoc(X1,Y)),!.
-
-
 
 task:-
     posisiPlayer(X,Y),
