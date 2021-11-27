@@ -111,7 +111,8 @@ d:-
     playerLoc(X,Y),
     X1 is X+1,
     retractall(playerLoc(X,Y)),
-    assertz(playerLoc(X1,Y)),!.
+    assertz(playerLoc(X1,Y)),
+        write('Berhasil melangkah ke kanan 1 tile'),nl,!.
 
 w:-
     playerLoc(X,Y),
@@ -129,6 +130,7 @@ w:-
     Y1 is Y-1,
     retractall(playerLoc(X,Y)),
     asserta(playerLoc(X,Y1)),
+    write('Berhasil melangkah ke atas 1 tile'),nl,
     !.
 
 s:-
@@ -146,7 +148,8 @@ s:-
     playerLoc(X,Y),
     Y1 is Y+1,
     retractall(playerLoc(X,Y)),
-    asserta(playerLoc(X,Y1)),!.
+    asserta(playerLoc(X,Y1)),
+    write('Berhasil melangkah ke bawah 1 tile'),nl,!.
 
 a:-
     playerLoc(X,Y),
@@ -163,10 +166,6 @@ a:-
     playerLoc(X,Y),
     X1 is X-1,
     retractall(playerLoc(X,Y)),
-    asserta(playerLoc(X1,Y)),!.
-
-task:-
-    posisiPlayer(X,Y),
-    questLoc(X,Y),
-    printMap,
-    quest,!.
+    asserta(playerLoc(X1,Y)),
+    write('Berhasil melangkah kekiri 1 tile'),nl,
+    !.
