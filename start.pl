@@ -17,7 +17,7 @@ barangAndEquipmentNameList(['fishing rod', 'shovel', 'tuna', 'salmon', 'catfish'
 start :- 
     playerState('startGame'),!,
     reset,
-    write('masukkan nama kamu\n>'),
+    write('masukkan nama kamu!\n> '),
     read(Name),assertz(playerName(Name)),
     write('Hai '),write(Name),write(', yuk jangan meninggoy. Pilih pekerjaanmu!'), nl,
     write('1. Farmer'), nl,
@@ -103,10 +103,24 @@ reset.
 % rancher mendapatkan 3 buah chicken dan 1 buah cow.
 classPerk :-
     class(Class),
-    ((Class = farmer,
-        write('seorang farmer tentu memiliki shovel. mulailah menabur seed dan melihat mereka bertumbuh!\n'),
-        changeItemCount('seed', 3), changeItemCount('shovel', 1), changeItemLevel('shovel', 1));
-    (Class = fisherman, 
-        write('kamu fisherman, dan kamu takkan lengkap tanpa fishing rod! some salmons won\'t hurt either ;)\n' ));
-    (Class = rancher, 
-        write('karena kamu seorang rancher, kamu mendapatkan 3 buah chicken dan 1 buah cow!\n'))).
+    (
+        (Class = farmer,
+            write('seorang farmer tentu memiliki shovel. mulailah menabur seed dan melihat mereka bertumbuh!\n'),
+            farmerArt,
+            changeItemCount('seed', 3), changeItemCount('shovel', 1), changeItemLevel('shovel', 1));
+        (Class = fisherman, 
+            write('kamu fisherman, dan kamu takkan lengkap tanpa fishing rod! some salmons won\'t hurt either ;)\n' ),
+            fishermanArt,
+            changeItemCount('fishing rod', 1), changeItemCount('salmon', 2), changeItemLevel('fishing rod', 1));
+        (Class = rancher, 
+            write('karena kamu seorang rancher, kamu mendapatkan 3 buah chicken dan 1 buah cow!\n'),
+            rancherArt,
+            changeItemCount('chicken', 3), changeItemCount('cow')
+        )
+    ).
+farmerArt :-
+write('farmer!').
+fishermanArt :-
+write('fisherman!').
+rancherArt :-
+write('rancher!').

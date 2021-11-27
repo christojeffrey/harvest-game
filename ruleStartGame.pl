@@ -40,6 +40,6 @@ exitGame :-
 exitGame :-
     write('kamu tidak sedang bermain\n').
 
-% untuk melakukan reset semua dynamic fact di globalFact
+% untuk melakukan reset semua dynamic fact di globalFact tapi belom dibikin. agak nguli.
 resetAllState :-
     retractall(playerState(_)).
