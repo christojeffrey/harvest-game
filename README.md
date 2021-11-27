@@ -75,9 +75,9 @@ ada **barang**. barang kita bikin gapunya level aja ya, ini pilihan barangnya.
 
 **FISH**
 
-- tuna
-- salmon
-- catfish
+- tuna (common)
+- salmon (rare)
+- catfish (legend)
 
 **RANCH**
 
