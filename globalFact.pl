@@ -41,3 +41,8 @@
 
 % fakta mengenai 'rule yang dapat diakses'. saat game berlangsung, hanya ada boleh satu satu buah fakta ini. jadi jangan lupa melakukan retract jika ingin melakukan penggantian
 :- dynamic(playerState/1).
+
+% fakta mengenai ranching (1 hari cuma bisa ranching 1 kali)
+:- dynamic(chickenRanched/0).
+:- dynamic(sheepRanched/0).
+:- dynamic(cowRanched/0).
