@@ -29,7 +29,7 @@ fishing:-
     playerLoc(X,Y),
     Y1 is Y+1,
     waterLoc(X,Y1),
-    random(1,8,Z)  
+    random(1,8,Z),
     goFishing(Z),!.
 
 goFishing(X):-

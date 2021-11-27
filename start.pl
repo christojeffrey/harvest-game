@@ -2,8 +2,8 @@
 
 % Include file global
 :- include('globalFact.pl').
-:- include('globalRule.pl')
-.
+:- include('globalRule.pl').
+:- include('ruleFishing.pl').
 % Fact untuk Comparison Input Class
 checkClass(1).
 checkClass(2).
@@ -58,26 +58,43 @@ initializingItems(List) :-
     List = [H|T], items(Prev), append(Prev,[[H,0,0]], New), retract(items(_)), assertz(items(New)), initializingItems(T).
 
 % buat assert map and loc
-
 initMap:-
+        write('success init map'),
     random(10,20,X),
-    random(10,20,Y),
+    random(15,20,Y),
+    retractall(lebarMap(_)),
     asserta(lebarMap(X)),
-    asserta(tinggiMap(Y)),    
-    asserta(playerLoc(1,1)),
-    generateLand.
+    retractall(tinggiMap(_)),
+    asserta(tinggiMap(Y)), 
+    retractall(playerLoc(_,_)),
+    retractall(questLoc(_,_)),
+    retractall(marketPlaceLoc(_,_)),
+    retractall(ranchLoc(_,_)),
+    retractall(houseLoc(_,_)),
+    retractall(waterLoc(_,_)),
+    generateLand,!.
 
 generateLand:-
-    asserta(questLoc(4,7)),
-    asserta(marketPlaceLoc(7,7)),
+    lebarMap(X),
+    tinggiMap(Y),
+    L is div(X,2),
+    T is div(Y,2),
+    T1 is T+2,
+    L1 is X-3,
+    T2 is Y-3,
+    asserta(questLoc(L,T2)),
+    asserta(waterLoc(_,1)),
+    asserta(marketPlaceLoc(L1,T1)),
     asserta(ranchLoc(3,3)),
-    asserta(houseLoc(5,5)),
-
+    asserta(houseLoc(L,T)),
+    asserta(playerLoc(L,T)),
     asserta(waterLoc(3,9)),
     asserta(waterLoc(2,9)),
     asserta(waterLoc(4,9)),
+    asserta(waterLoc(3,10)),
     asserta(waterLoc(4,8)),
-    asserta(waterLoc(3,7)).
+    asserta(waterLoc(3,8)),
+    asserta(waterLoc(3,7)),!.
 
 % Ini buat assertz Classnya
 getClass(Class) :-

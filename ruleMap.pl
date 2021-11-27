@@ -12,9 +12,9 @@
 
 
 isBorderAtas(_,H):- H=:=0,!.
-isBorderBawah(_,H):- Y is H-1, tinggiMap(Y),!.
+isBorderBawah(_,H):- Y is H, tinggiMap(Y),!.
 isBorderKiri(L,_):- L=:=0,!.
-isBorderKanan(L,_):- X is L-1, lebarMap(X),!.
+isBorderKanan(L,_):- X is L, lebarMap(X),!.
 
 
 
@@ -77,99 +77,93 @@ printMap:-
     lebarMap(L),
     X is 0,
     Y is 0,
-    Xmax is L+1,
-    Ymax is T+1,
+    Xmax is L,
+    Ymax is T,
     forall(between(Y, Ymax, I),(
         forall(between(X,Xmax,J),(
-            printCoord(I,J)
+            printCoord(J,I)
         )),
-        nl,
+        nl
     )),
     !.
 
 map:-
-    retract(questLoc(_,_)),
-    retract(houseLoc(_,_)),
-    retract(marketPlaceLoc(_,_)),
-    retract(ranchLoc(_,_)),
-    retract(waterLoc(_,_)),
-    retract(diggedLoc(_,_)),
-    initMap,
     printMap,
-    printLegend,
-    !.
+    printLegend.
 
-w:-
+d:-
     playerLoc(X,Y),
-    Y1 is Y-1,
-    isBorderAtas(X,Y1),!.
-w:-
-    playerLoc(X,Y),
-    Y1 is Y-1,
-    waterLoc(X,Y1),!.
+    X1 = X +1,
+    isBorderKanan(X1,Y),
+    write('Mentok gaiss..').
 
-w:-
-    retract(playerLoc(X,Y)),
-    Y1 is Y-1,
-    asserta(posisiPlayer(X,Y1)),
-    task.
-
-s:-
+d:-
     playerLoc(X,Y),
-    Y1 is Y+1,
-    isBorderBawah(X,Y1),!.
-s:-
-    playerLoc(X,Y),
-    Y1 is Y+1,
-    waterLoc(X,Y1),!.
-
-s:-
-    retract(playerLoc(X,Y)),
-    Y1 is Y+1,
-    asserta(posisiPlayer(X,Y1)),
-    task.
-
-a:-
-    playerLoc(X,Y),
-    X1 is X -1,
-    isBorderKiri(X1,Y),
-    !.
-
-a:-
-    playerLoc(X,Y),
-    X1 is X -1,
+    X1 = X +1,
     waterLoc(X1,Y),
-    !.
-a:-
-    retract(playerLoc(X,Y)),
-    X1 is X-1,
-    asserta(posisiPlayer(X1,Y)),
-    task.
+    write('Ati-ati nyebur..').
 
 d:-
     playerLoc(X,Y),
-    X1 is X +1,
-    isBorderKiri(X1,Y),
-    !.
-
-d:-
-    playerLoc(X,Y),
-    X1 is X +1,
-    waterLoc(X1,Y),
-    !.
-d:-
-    retract(playerLoc(X,Y)),
     X1 is X+1,
-    asserta(posisiPlayer(X1,Y)),
-    task.
+    retractall(playerLoc(X,Y)),
+    assertz(playerLoc(X1,Y)),!.
+
+w:-
+    playerLoc(X,Y),
+    Y1 is Y-1,
+    isBorderAtas(X,Y1),
+    write('Mentok gaiss..').
+w:-
+    playerLoc(X,Y),
+    Y1 is Y-1,
+    waterLoc(X,Y1),
+    write('Ati-ati nyebur..').
+
+w:-
+    playerLoc(X,Y),
+    Y1 is Y-1,
+    retractall(playerLoc(X,Y)),
+    asserta(playerLoc(X,Y1)),
+    !.
+
+s:-
+    playerLoc(X,Y),
+    Y1 is Y+1,
+    isBorderBawah(X,Y1),
+    write('Mentok gaiss..').
+s:-
+    playerLoc(X,Y),
+    Y1 is Y+1,
+    waterLoc(X,Y1),
+    write('Ati-ati nyebur..').
+
+s:-
+    retractall(playerLoc(X,Y)),
+    Y1 is Y+1,
+    asserta(playerLoc(X,Y1)),
+    !.
+
+a:-
+    playerLoc(X,Y),
+    X1 is X -1,
+    isBorderKiri(X1,Y),
+    write('Mentok gaiss..').
+
+a:-
+    playerLoc(X,Y),
+    X1 is X -1,
+    waterLoc(X1,Y),
+    write('Ati-ati nyebur..').
+a:-
+    retractall(playerLoc(X,Y)),
+    X1 is X-1,
+    asserta(playerLoc(X1,Y)),!.
+
+
 
 task:-
     posisiPlayer(X,Y),
     questLoc(X,Y),
     printMap,
     quest,!.
-
-task:-.
-
-
-resetMap:-.
