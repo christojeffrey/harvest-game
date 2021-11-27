@@ -68,13 +68,15 @@ printCoord(_,_):-
 
 
 printLegend():-
-    write('Legends:'),nl,
-    write(' M	: Marketplace'),nl,
-    write(' R	: Ranch'),nl,
-    write(' H	: House'),nl,
-    write(' Q	: Tempat pengambilan quest'),nl,
-    write(' o	: Tile ai'),nl,
-    write(' =	: Digged tile'),nl.
+    write('w======| + |=======  w  ======| + |=======w'),nl,
+    write('      Legends:'),nl,
+    write('       M	    : Marketplace'),nl,
+    write('       R	    : Ranch'),nl,
+    write('       H	    : House'),nl,
+    write('       Q	    : Tempat pengambilan quest'),nl,
+    write('       o	    : Tile ai'),nl,
+    write('       =	    : Digged tile'),nl,
+    write('w======| + |=======  w  ======| + |=======w'),nl.
 
 printMap:-
     tinggiMap(T),
@@ -83,6 +85,9 @@ printMap:-
     Y is 0,
     Xmax is L+1,
     Ymax is T+1,
+    write('w======| + |======= w ======| + |=======w'),nl,
+    write('|       This your Map Captain!!!        |'),nl,
+    write('w======| + |======= w ======| + |=======w'),nl,
     forall(between(Y, Ymax, I),(
         forall(between(X,Xmax,J),(
             printCoord(J,I)
@@ -123,7 +128,7 @@ w:-
     playerLoc(X,Y),
     Y1 is Y-1,
     waterLoc(X,Y1),
-    write('Ati-ati nyebur..').
+    write('Ati-ati nyebur..,').
 
 w:-
     playerLoc(X,Y),

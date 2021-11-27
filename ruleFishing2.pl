@@ -85,7 +85,8 @@ goFishing(X):-
     write('(____\ /{'),nl,
     Z1 is Z+45,
     asserta(expFishing(Z1)), 
-    changeItemCount('Tuna',1),!.
+    changeItemCount('tuna',1),
+    asserta(levelFishing(Y1)),!.
 
 goFishing(X):-
     levelFishing(Y),
@@ -102,7 +103,8 @@ goFishing(X):-
     write('     `` \\ '),nl,
     Z1 is Z+75,
     asserta(expFishing(Z1)), 
-    changeItemCount('Salmon',1),!.
+    changeItemCount('salmon',1),
+    asserta(levelFishing(Y1)),!.
 
 goFishing(X):-
     levelFishing(Y),
@@ -117,7 +119,8 @@ goFishing(X):-
     retractall(expFishing(Z)),
     Z1 is Z+130,
     asserta(expFishing(Z1)),   
-    changeItemCount('Catfish',1),!.
+    changeItemCount('catfish',1),
+    asserta(levelFishing(Y1)),!.
 
 %Jika dia orang lain
 
@@ -132,7 +135,8 @@ goFishing(X):-
     write('(____\ /{'),nl,
     Z1 is Z+25,
     asserta(expFishing(Z1)), 
-    changeItemCount('Tuna',1),!.
+    changeItemCount('tuna',1),
+    asserta(levelFishing(Y1)),!.
 
 goFishing(X):-
     levelFishing(Y),
@@ -149,7 +153,8 @@ goFishing(X):-
     write('     `` \\ '),nl,
     Z1 is Z+50,
     asserta(expFishing(Z1)), 
-    changeItemCount('Salmon',1),!.
+    changeItemCount('salmon',1),
+    asserta(levelFishing(Y1)),!.
 
 goFishing(X):-
     levelFishing(Y),
@@ -164,7 +169,33 @@ goFishing(X):-
     retractall(expFishing(Z)),
     Z1 is Z+100,
     asserta(expFishing(Z1)),   
-    changeItemCount('Catfish',1),!.
+    changeItemCount('catfish',1),
+    asserta(levelFishing(Y1)),!.
+
+
+checkLevelFishing(X):-
+    X>500,
+    levelFishing(Y),
+    Y1 is Y+1,
+    write('*===============+=+============||=============+=+=========*'),nl,
+    write('Selamat kamu nail level, sekarang kamu memiki fishing level'),
+    write(Y1),
+    write('.'),nl,
+    write('*===============+=+============||=============+=+=========*'),nl,
+    retractall(levelFishing(_)),
+    asserta(levelFishing(Y1)),!.
+
+checkLevelFishing(X):-
+    X>1000,
+    levelFishing(Y),
+    Y1 is Y+1,
+    write('*===============+=+============||=============+=+=========*'),nl,
+    write('Selamat kamu nail level, sekarang kamu memiki fishing level'),
+    write(Y1),
+    write('.'),nl,
+    write('*===============+=+============||=============+=+=========*'),nl,
+    retractall(levelFishing(_)),
+    asserta(levelFishing(Y1)),!.
 
 
     
