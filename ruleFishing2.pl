@@ -57,14 +57,11 @@ goFishing(X):-
     nl,!.
 
 goFishing(X):-
-    levelFishing(1),
-    X1 is X+1,
-    X1>=4,
-    X1<7,
-    write('Kamu memancing seekor Tuna, selamat'),
-    nl,
-    inventoryList([NamaIkan JumlahIkan Level]),
-    NamaIkan == tuna,
-    JumlahBaru is JumlahIkan+1,
-    retractall(inventoryList([NamaIkan JumlahIkan Level])),
-    aserta(inventoryList([NamaIkan JumlahBaru Level])),!.
+    levelFishing(_),
+    totalItemCount(Total),
+    Total=:=100,
+    write('Item penuh, kosongkan inventory terlebih dahulu!'),
+    nl,!.
+
+
+    
