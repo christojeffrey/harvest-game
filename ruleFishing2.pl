@@ -1,35 +1,50 @@
 :- include('globalFact.pl').
 :- include('globalRule.pl').
 
-fishing:-
+fish:-
     playerLoc(X,Y),
     X1 is X-1,
     waterLoc(X1,Y),
     random(0,8,Z),
-    goFishing(Z),!.
+    currentTime(T),
+    T1 is T+20,
+    retractall(currentTime(T)),
+    asserta(currentTime(T1)),
+    goFishing,!.
 
-fishing:-
+fish:-
     playerLoc(X,Y),
     X1 is X+1,
     waterLoc(X1,Y),
     random(0,8,Z),
-    goFishing(Z),!.
-
-fishing:-  
+    currentTime(T),
+    T1 is T+20,
+    retractall(currentTime(T)),
+    asserta(currentTime(T1)),
+    goFishing,!.
+fish:-  
     playerLoc(X,Y),
     Y1 is Y-1,
     waterLoc(X,Y1),
     random(0,8,Z),
-    goFishing(Z),!.
+    currentTime(T),
+    T1 is T+20,
+    retractall(currentTime(T)),
+    asserta(currentTime(T1)),
+    goFishing,!.
 
-fishing:-
+fish:-
     playerLoc(X,Y),
     Y1 is Y+1,
     waterLoc(X,Y1),
     random(0,8,Z),
-    goFishing(Z),!.
+    currentTime(T),
+    T1 is T+20,
+    retractall(currentTime(T)),
+    asserta(currentTime(T1)),
+    goFishing,!.
 
-fishing:-
+fish:-
     write('Maaf kamu tidak berada di dekat air, Pergi ke tempat air untuk memancing!!!'),
     nl,
     !.
