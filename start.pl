@@ -9,7 +9,7 @@ checkClass(1).
 checkClass(2).
 checkClass(3).
 % fact buat nyatet nama2 barang yang ada
-barangAndEquipmentNameList(['fishing rod', 'shovel', 'tuna', 'salmon', 'catfish', 'seed', 'corn', 'carrot', 'wheat', 'wool', 'egg', 'milk', 'chicken', 'cow', 'sheep']).
+barangAndEquipmentNameList(['fishing rod', 'shovel', 'tuna', 'salmon', 'catfish', 'corn seed', 'carrot seed', 'wheat seed', 'corn', 'carrot', 'wheat', 'wool', 'egg', 'milk', 'chicken', 'cow', 'sheep']).
 :- dynamic(playerName/1).
 % Rules
 
@@ -98,7 +98,7 @@ reset :- retract(class(_)), fail.
 reset.
 
 % command untuk memberikan perk tergantung kelas yang dia pilih.
-% farmer mendapat shovel level 1, dan 3 buah seed
+% farmer mendapat shovel level 1, dan 3 buah seed corn
 % fisherman mendapat fishing rod, dan 2 buah salmon
 % rancher mendapatkan 3 buah chicken dan 1 buah cow.
 classPerk :-
@@ -107,7 +107,7 @@ classPerk :-
         (Class = farmer,
             write('seorang farmer tentu memiliki shovel. mulailah menabur seed dan melihat mereka bertumbuh!\n'),
             farmerArt,
-            changeItemCount('seed', 3), changeItemCount('shovel', 1), changeItemLevel('shovel', 1));
+            changeItemCount('corn seed', 3), changeItemCount('shovel', 1), changeItemLevel('shovel', 1));
         (Class = fisherman, 
             write('kamu fisherman, dan kamu takkan lengkap tanpa fishing rod! some salmons won\'t hurt either ;)\n' ),
             fishermanArt,

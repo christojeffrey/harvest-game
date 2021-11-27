@@ -31,10 +31,10 @@ sleep :-
     retract(currentDay(CD)),
     assertz(currentDay(CDnew)),
     retract(currentTime(_)),
-    assertz(currentTime(7)),
+    assertz(currentTime(6)),
     failState,
     write('day '),write(CDnew),write('\n'),
-    write('masih pukul 7 pagi, exit the house, explore, and soon you will be able to pay your debt!\n'),
+    write('masih pukul 6 pagi, exit the house, explore, and soon you will be able to pay your debt!\n'),
     clearRanched.
 
 sleep :-

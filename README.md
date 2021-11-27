@@ -66,7 +66,9 @@ ada **barang**. barang kita bikin gapunya level aja ya, ini pilihan barangnya.
 
 **FARM**
 
-- seed
+- seed corn
+- seed carrot
+- seed wheat
 - corn
 - carrot
 - wheat

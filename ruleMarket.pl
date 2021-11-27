@@ -4,7 +4,9 @@
 % fact
 % list dulu semua barang yang ada.
 % priceList(Barang, Harga).
-priceList('seed', 50).
+priceList('corn seed', 50).
+priceList('carrot seed', 50).
+priceList('wheat seed', 50).
 
 priceList('corn', 100).
 priceList('carrot', 200).
@@ -17,6 +19,7 @@ priceList('catfish', 600).
 priceList('wool', 700).
 priceList('egg', 800).
 priceList('milk', 900).
+
 priceList('chicken', 1000).
 priceList('sleep', 1200).
 priceList('cow', 1400).
@@ -32,6 +35,7 @@ market :-
 % cek apakah dia ada di tile market,
 % cek apakah dia sudah melakukan start
     playerState('start'),!,
+    isCommandAllowed,
     retract(playerState(_)),
     assertz(playerState('market')),
     write('welcome to market!'),
