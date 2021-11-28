@@ -1,14 +1,9 @@
 % digunakan untuk menampilkan map, dan untuk berpindah.
 
 % include fakta global
-:- include('globalFact.pl').
-:- include('globalRule.pl').
+% :- include('globalFact.pl').
+% :- include('globalRule.pl').
 %map :- write('ini map').
-
-%w :- %write('kamu bergerak ke arah utara sebanyak 1 tile').
-%a :- %write('kamu bergerak ke arah barat sebanyak 1 tile').
-%s :- %write('kamu bergerak ke arah selatan sebanyak 1 tile').
-%d :- %write('kamu bergerak ke arah timur sebanyak 1 tile').
 
 
 isBorderAtas(_,H):- H=:=0,!.
@@ -67,15 +62,15 @@ printCoord(_,_):-
     write('-').
 
 
-printLegend():-
+printLegend :-
     write('w======| + |=======  w  ======| + |=======w'),nl,
     write('      Legends:'),nl,
-    write('       M	    : Marketplace'),nl,
-    write('       R	    : Ranch'),nl,
-    write('       H	    : House'),nl,
-    write('       Q	    : Tempat pengambilan quest'),nl,
-    write('       o	    : Tile ai'),nl,
-    write('       =	    : Digged tile'),nl,
+    write('       M     : Marketplace'),nl,
+    write('       R     : Ranch'),nl,
+    write('       H     : House'),nl,
+    write('       Q     : Tempat pengambilan quest'),nl,
+    write('       o     : Tile ai'),nl,
+    write('       =     : Digged tile'),nl,
     write('w======| + |=======  w  ======| + |=======w'),nl.
 
 printMap:-
@@ -104,13 +99,13 @@ d:-
     playerLoc(X,Y),
     X1 = X +1,
     isBorderKanan(X1,Y),
-    write('Mentok gaiss..').
+    write('Mentok gaiss..'),!.
 
 d:-
     playerLoc(X,Y),
     X1 = X +1,
     waterLoc(X1,Y),
-    write('Ati-ati nyebur..').
+    write('Ati-ati nyebur..'),!.
 
 d:-
     playerLoc(X,Y),
@@ -123,12 +118,12 @@ w:-
     playerLoc(X,Y),
     Y1 is Y-1,
     isBorderAtas(X,Y1),
-    write('Mentok gaiss..').
+    write('Mentok gaiss..'),!.
 w:-
     playerLoc(X,Y),
     Y1 is Y-1,
     waterLoc(X,Y1),
-    write('Ati-ati nyebur..,').
+    write('Ati-ati nyebur..,'),!.
 
 w:-
     playerLoc(X,Y),
@@ -142,12 +137,12 @@ s:-
     playerLoc(X,Y),
     Y1 is Y+1,
     isBorderBawah(X,Y1),
-    write('Mentok gaiss..').
+    write('Mentok gaiss..'),!.
 s:-
     playerLoc(X,Y),
     Y1 is Y+1,
     waterLoc(X,Y1),
-    write('Ati-ati nyebur..').
+    write('Ati-ati nyebur..'),!.
 
 s:-
     playerLoc(X,Y),
@@ -160,13 +155,13 @@ a:-
     playerLoc(X,Y),
     X1 is X -1,
     isBorderKiri(X1,Y),
-    write('Mentok gaiss..').
+    write('Mentok gaiss..'),!.
 
 a:-
     playerLoc(X,Y),
     X1 is X -1,
     waterLoc(X1,Y),
-    write('Ati-ati nyebur..').
+    write('Ati-ati nyebur..'),!.
 a:-
     playerLoc(X,Y),
     X1 is X-1,

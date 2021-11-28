@@ -7,7 +7,7 @@
 :- include('ruleStartGame.pl').
 
 %include help
-:- include('ruleHelp.pl').
+% :- include('ruleHelp.pl').
 
 %i include rule yang dapat diakses setelah startGame
 :- include('start.pl').
@@ -15,7 +15,7 @@
 % include rule yang dapat diakses berdasarkan lokasi saat ini
 :- include('ruleHouse.pl').
 :- include('ruleMarket.pl').
-% :- include('ruleMap.pl').
+:- include('ruleMap.pl').
 :- include('ruleInventory.pl').
 :- include('ruleRanch.pl').
 :- include('ruleFarm.pl').
