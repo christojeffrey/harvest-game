@@ -57,6 +57,17 @@ printCoord(X,Y):-
 printCoord(X,Y):-
     diggedLoc(X,Y),!,
     write('=').
+printCoord(X,Y) :-
+    plantedLoc(X,Y,Name,_,_),!,
+    (
+        (
+            Name = 'corn',write('c')
+        );(
+            Name = 'carrot',write('r')
+        );(
+            Name = 'wheat',write('w')
+        )
+    ).
 
 printCoord(_,_):-
     write('-').
@@ -69,7 +80,7 @@ printLegend :-
     write('       R     : Ranch'),nl,
     write('       H     : House'),nl,
     write('       Q     : Tempat pengambilan quest'),nl,
-    write('       o     : Tile ai'),nl,
+    write('       o     : Tile air'),nl,
     write('       =     : Digged tile'),nl,
     write('w======| + |=======  w  ======| + |=======w'),nl.
 

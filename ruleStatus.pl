@@ -35,7 +35,7 @@ status :-
 
     % Displays facts on screen
     write('Day: '), write(Day), nl,
-    write('Time: '), write(Time), nl, nl,
+    write('Time: '), write(Time),write(':00'), nl, nl,
     write('Your status:'), nl,
     write('Gold: '), write(Gold), nl,
     write('Job: '), write(Class), nl,

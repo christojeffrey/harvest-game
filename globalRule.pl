@@ -45,7 +45,9 @@ addTimeByX(X) :-
 % untuk saat ini, batas time dalam satu hari adalah 22 (kek 22.00, jam 10 malem jam)
 isCommandAllowed :-
     currentTime(X), 
-    X >= 22 -> (write('harimu sudah habis! kerumah trus bobok yah\n'), fail); true.
+    X >= 24,!, write('harimu sudah habis! kerumah trus bobok yah\n'), fail.
+isCommandAllowed :-
+    true.
 
 
 % -----rule untuk item-----

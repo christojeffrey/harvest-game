@@ -14,7 +14,7 @@ isMyLocNotaSpecialTile:-
     houseLoc(HX, HY),
     questLoc(QX, QY),
     forall(diggedLoc(DX, DY),(MyX \= DX ; MyY \= DY)),
-    forall(plantedLoc(PX, PY,_,_,_), (MyX \= PX, MyY \= PY)),
+    forall(plantedLoc(PX, PY,_,_,_), (MyX \= PX; MyY \= PY)),
     (MyX \= MPX; MyY \= MPY),
     (MyX \= RX; MyY \= RY),
     (MyX \= HX; MyY \= HY),
@@ -23,39 +23,41 @@ isMyLocNotaSpecialTile:-
 
 dig :-
     playerState('start'),
-    isCommandAllowed,
     write('command is allowed'),nl,
     isMyLocNotaSpecialTile,!,
+    isCommandAllowed,
     findItem('shovel', ShovelDetail),
     ShovelDetail = [_,ShovelCount,ShovelLevel],
     (ShovelCount \= 0 ->(
         playerLoc(MyX, MyY),
         assertz(diggedLoc(MyX, MyY)),
         write('you digged a tile.\n'),!,
-        ((
-            ShovelLevel == 1,
-            addTimeByX(4)
-        );(
-            ShovelLevel == 2,
-            addTimeByX(2)
-        );(
-            ShovelLevel == 3,
-            addTimeByX(1)
-        ))
+        digTime(ShovelLevel)
+
     );(
         write('kamu tidak mempunya shovel\n')
     )).
 dig :-
     write('you cannot dig this tile because it\'s a special tile!\n (or the game hasn\'t been started yet)').
 
+
+digTime(ShovelLevel) :-
+    ShovelLevel == 1,!,
+    addTimeByX(4).
+digTime(ShovelLevel) :-
+    ShovelLevel == 2,!,
+    addTimeByX(2).
+digTime(ShovelLevel) :-
+    ShovelLevel == 3,!,
+    addTimeByX(1).
+
 plant :-
     playerState('start'),
-    isCommandAllowed,
     playerLoc(MyX, MyY),
-    diggedLoc(DX, DY),
-    DX = MyX, DY = MyY,!,
+    diggedLoc(MyX, MyY),!,
+    isCommandAllowed,
     showAvailableSeed,
-    write('what do you want to plant? (example \'corn\')\n > '),
+    write('what do you want to plant? (example \'corn\')\n> '),
     read(TobePlanted),
     planting(TobePlanted),
     currentDay(CD),
@@ -73,7 +75,7 @@ showAvailableSeed :-
     write('you have :'),nl,
     helperShowAvailableSeed('corn seed'),
     helperShowAvailableSeed('carrot seed'),
-    helperShowAvailableSeed('wheat seed').
+    helperShowAvailableSeed('wheat seed'),!.
     
 helperShowAvailableSeed(ItemName) :-
     findItem(ItemName, ItemDetail),
@@ -86,18 +88,16 @@ helperShowAvailableSeed(ItemName) :-
     ).
 
 planting(ItemName) :-
-    (
-        ItemName = 'corn', 
-        changeItemCount('corn seed', -1)
-    );(
-        ItemName = 'carrot',
-        changeItemCount('carrot seed', -1)
+    ItemName = 'corn', 
+    changeItemCount('corn seed', -1),!.
 
-    );(
-        ItemName = 'wheat',
-        changeItemCount('wheat seed', -1)
+planting(ItemName) :-
+    ItemName = 'carrot',
+    changeItemCount('carrot seed', -1),!.
 
-    ),!.
+planting(ItemName) :-
+    ItemName = 'wheat',
+    changeItemCount('wheat seed', -1),!.
 planting(_):-
     write('input tidak valid\n'), fail.
 
@@ -115,7 +115,7 @@ harvest :-
         % sekali harvest, dapet 2 biji. generous dikit lah
         changeItemCount(PlantName, 2),
         write('kamu mendapatkan 2 buah '), write(PlantName), write('!\n'),
-        retract(plantedLoc(PX, PY, PlantName,PlantDay,PlantTime)),
+        retract(plantedLoc(PX, PY, PlantName,PlantDay,_)),
         addTimeByX(2)
 
     );(
