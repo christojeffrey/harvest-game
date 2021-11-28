@@ -8,29 +8,30 @@
 
 % (seperti) sebuah fungsi yang mengembalikan true jika tile player saat ini bukanlah special tile.
 isMyLocNotaSpecialTile:-
-    playerLoc(MyBaris, MyKolom),
-    marketPlaceLoc(MPBaris, MPKolom),
-    ranchLoc(RBaris, RKolom),
-    houseLoc(HBaris, HKolom),
-    questLoc(QBaris, Qkolom),
-    forall(diggedLoc(DBaris, Dkolom),( MyBaris \= DBaris, MyKolom \= Dkolom)),
-    forall(plantedLoc(PBaris, Pkolom,_,_,_), (MyBaris \= PBaris, MyKolom \= Pkolom)),
-    MyBaris \= MPBaris, MyKolom \= MPKolom,
-    MyBaris \= RBaris, MyKolom \= RKolom,
-    MyBaris \= HBaris, MyKolom \= HKolom,
-    MyBaris \= QBaris, MyKolom \= Qkolom.
+    playerLoc(MyX, MyY),
+    marketPlaceLoc(MPX, MPY),
+    ranchLoc(RX, RY),
+    houseLoc(HX, HY),
+    questLoc(QX, QY),
+    forall(diggedLoc(DX, DY),(MyX \= DX ; MyY \= DY)),
+    forall(plantedLoc(PX, PY,_,_,_), (MyX \= PX, MyY \= PY)),
+    (MyX \= MPX; MyY \= MPY),
+    (MyX \= RX; MyY \= RY),
+    (MyX \= HX; MyY \= HY),
+    (MyX \= QX;  MyY \= QY).
 
 
 dig :-
-    playerState('start'),!,
+    playerState('start'),
     isCommandAllowed,
-    isMyLocNotaSpecialTile, !,
+    write('command is allowed'),nl,
+    isMyLocNotaSpecialTile,!,
     findItem('shovel', ShovelDetail),
-    (ShovelDetail \= [] ->(
-        ShovelDetail = [_,_,ShovelLevel],
-        playerLoc(MyBaris, MyKolom),
-        assertz(diggedLoc(MyBaris, MyKolom)),
-        write('you digged a tile.\n'),
+    ShovelDetail = [_,ShovelCount,ShovelLevel],
+    (ShovelCount \= 0 ->(
+        playerLoc(MyX, MyY),
+        assertz(diggedLoc(MyX, MyY)),
+        write('you digged a tile.\n'),!,
         ((
             ShovelLevel == 1,
             addTimeByX(4)
@@ -48,19 +49,19 @@ dig :-
     write('you cannot dig this tile because it\'s a special tile!\n (or the game hasn\'t been started yet)').
 
 plant :-
-    playerState('start'),!,
+    playerState('start'),
     isCommandAllowed,
-    playerLoc(MyBaris, MyKolom),
-    diggedLoc(DBaris, Dkolom),
-    DBaris = MyBaris, Dkolom = MyKolom,!,
+    playerLoc(MyX, MyY),
+    diggedLoc(DX, DY),
+    DX = MyX, DY = MyY,!,
     showAvailableSeed,
     write('what do you want to plant? (example \'corn\')\n > '),
     read(TobePlanted),
     planting(TobePlanted),
     currentDay(CD),
     currentTime(CT),
-    assertz(plantedLoc(MyBaris, MyKolom, TobePlanted,CD, CT)),
-    retract(diggedLoc(MyBaris, MyKolom)),
+    assertz(plantedLoc(MyX, MyY, TobePlanted,CD, CT)),
+    retract(diggedLoc(MyX, MyY)),
     write('you planted a '), write(TobePlanted), write(' seed.\n'),
     addTimeByX(2).
 
@@ -103,18 +104,18 @@ planting(_):-
 
 % harvest baru bisa setelah 1 hari.
 harvest :-
-    playerState('start'),!,
+    playerState('start'),
     isCommandAllowed,
-    playerLoc(MyBaris, MyKolom),
-    plantedLoc(PBaris, Pkolom, PlantName,PlantDay,_),
-    PBaris = MyBaris, Pkolom = MyKolom,!,
+    playerLoc(MyX, MyY),
+    plantedLoc(PX, PY, PlantName,PlantDay,_),
+    PX = MyX, PY = MyY,!,
     currentDay(CD),
     (PlantDay < CD  ->(
         % bisa harvest
         % sekali harvest, dapet 2 biji. generous dikit lah
         changeItemCount(PlantName, 2),
         write('kamu mendapatkan 2 buah '), write(PlantName), write('!\n'),
-        retract(plantedLoc(PBaris, Pkolom, PlantName,PlantDay,PlantTime)),
+        retract(plantedLoc(PX, PY, PlantName,PlantDay,PlantTime)),
         addTimeByX(2)
 
     );(

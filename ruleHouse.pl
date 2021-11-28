@@ -52,7 +52,7 @@ failState :-
 
 writeDiary:-
     currentDay(CD),
-    \+ diary(CD,_),!,
+    \+ diary(CD,_),
     playerState('house'),!,
     write('dear diary,(tulis menggunakan petik dua diawal dan diakhir sebelum titik)\n>'),
     read(X), atom_codes(DiaryText,X),

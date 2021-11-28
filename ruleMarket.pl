@@ -51,7 +51,7 @@ market :-
 % cek dulu apakah inventory penuh
 buy :-
     totalItemCount(TotalItemCount),
-    TotalItemCount \= 100,!,
+    TotalItemCount \= 100,
     playerState('market'),!,
     write('kamu memilih buy\n'),
     write('uang kamu saat ini: '), gold(Gold), write(Gold), nl,

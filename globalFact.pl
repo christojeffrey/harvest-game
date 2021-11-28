@@ -20,7 +20,7 @@
 :- dynamic(questLoc/2).
 :- dynamic(waterLoc/2).
 :- dynamic(diggedLoc/2).
-% plantedLoc(baris, kolom, nama, hari tanam, jam tanam).
+% plantedLoc(x, y, nama, hari tanam, jam tanam).
 % contoh plantedLoc(3,4,'corn', 2, 15).
 :- dynamic(plantedLoc/5).
 
