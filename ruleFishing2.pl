@@ -70,6 +70,7 @@ goFishing(X):-
     levelFishing(1),
     X1 is X+2,
     X1 < 4,
+    addTimeByX(4),
     write('Sepertinya ikanmu kabur, kamu kurang beruntung!'),
     nl,!.
 
@@ -78,14 +79,17 @@ goFishing(X):-
     levelFishing(2),
     X1 is X+3,
     X1 < 4,
+    addTimeByX(3),
     write('Sepertinya ikanmu kabur, kamu kurang beruntung!'),
     nl,!.
 
 goFishing(X):-
     class(fisherman),
-    levelFishing(3),
+    levelFishing(L),
+    L>=3,
     X1 is X+4,
     X1 < 4,
+    addTimeByX(2),
     write('Sepertinya ikanmu kabur, kamu kurang beruntung!'),
     nl,!.
 
@@ -95,56 +99,7 @@ goFishing(X):-
     X1 is X+Y,
     X1 >=4,
     X1<=6,
-    write('Selamat kamu berhasil memancing sebuah Tuna!!'),nl,
-    write(' __v_'),nl,
-    write('(____\ /{'),nl,
-    Z1 is Z+45,
-    asserta(expFishing(Z1)), 
-    changeItemCount('tuna',1),
-    asserta(levelFishing(Y1)),!.
-
-goFishing(X):-
-    levelFishing(Y),
-    X1 is X+Y,
-    X1>6,
-    X1<9,
-    write('Selamat kamu berhasil memancing sebuah Tuna!!'),
-    nl,
-    write('        /\\ '),nl,
-    write('      _/./  '),nl,
-    write('   ,-|    `-:.,-/ '),nl
-    write('  > O )<)    _  ('),nl,
-    write('  `-._  _.:\' `-.\\ '),nl,
-    write('     `` \\ '),nl,
-    Z1 is Z+75,
-    asserta(expFishing(Z1)), 
-    changeItemCount('salmon',1),
-    asserta(levelFishing(Y1)),!.
-
-goFishing(X):-
-    levelFishing(Y),
-    X1 is X+Y,
-    X1>=9,
-    write('Selamat kamu berhasil memancing sebuah Tuna!!'),
-    nl,
-    write('          /"*._         _'),nl,
-    write('      .-*'`    `*-.._.-'/'),nl,
-    write('    < * ))     ,       ( '),nl,
-    write('      `*-._`._(__.--*"`.\\ '),nl,
-    retractall(expFishing(Z)),
-    Z1 is Z+130,
-    asserta(expFishing(Z1)),   
-    changeItemCount('catfish',1),
-    asserta(levelFishing(Y1)),!.
-
-%Jika dia orang lain
-
-
-goFishing(X):-
-    levelFishing(Y),
-    X1 is X+Y,
-    X1 >=4,
-    X1<=6,
+    addTimeByX(5),
     write('Selamat kamu berhasil memancing sebuah Tuna!!'),nl,
     write(' __v_'),nl,
     write('(____\ /{'),nl,
@@ -158,6 +113,7 @@ goFishing(X):-
     X1 is X+Y,
     X1>6,
     X1<9,
+    addTimeByX(4),
     write('Selamat kamu berhasil memancing sebuah Tuna!!'),
     nl,
     write('        /\\ '),nl,
@@ -166,7 +122,7 @@ goFishing(X):-
     write('  > O )<)    _  ('),nl,
     write('  `-._  _.:\' `-.\\ '),nl,
     write('     `` \\ '),nl,
-    Z1 is Z+50,
+    Z1 is Z+45,
     asserta(expFishing(Z1)), 
     changeItemCount('salmon',1),
     asserta(levelFishing(Y1)),!.
@@ -175,6 +131,7 @@ goFishing(X):-
     levelFishing(Y),
     X1 is X+Y,
     X1>=9,
+    addTimeByX(3),
     write('Selamat kamu berhasil memancing sebuah Tuna!!'),
     nl,
     write('          /"*._         _'),nl,
@@ -182,14 +139,67 @@ goFishing(X):-
     write('    < * ))     ,       ( '),nl,
     write('      `*-._`._(__.--*"`.\\ '),nl,
     retractall(expFishing(Z)),
-    Z1 is Z+100,
+    Z1 is Z+60,
+    asserta(expFishing(Z1)),   
+    changeItemCount('catfish',1),
+    asserta(levelFishing(Y1)),!.
+
+%Jika dia orang lain
+
+
+goFishing(X):-
+    levelFishing(Y),
+    X1 is X+Y,
+    X1 >=4,
+    X1<=6,
+    addTimeByX(3),
+    write('Selamat kamu berhasil memancing sebuah Tuna!!'),nl,
+    write(' __v_'),nl,
+    write('(____\ /{'),nl,
+    Z1 is Z+5,
+    asserta(expFishing(Z1)), 
+    changeItemCount('tuna',1),
+    asserta(levelFishing(Y1)),!.
+
+goFishing(X):-
+    levelFishing(Y),
+    X1 is X+Y,
+    X1>6,
+    X1<9,
+    addTimeByX(3),
+    write('Selamat kamu berhasil memancing sebuah Tuna!!'),
+    nl,
+    write('        /\\ '),nl,
+    write('      _/./  '),nl,
+    write('   ,-|    `-:.,-/ '),nl
+    write('  > O )<)    _  ('),nl,
+    write('  `-._  _.:\' `-.\\ '),nl,
+    write('     `` \\ '),nl,
+    Z1 is Z+15,
+    asserta(expFishing(Z1)), 
+    changeItemCount('salmon',1),
+    asserta(levelFishing(Y1)),!.
+
+goFishing(X):-
+    levelFishing(Y),
+    X1 is X+Y,
+    X1>=9,
+    addTimeByX(3),
+    write('Selamat kamu berhasil memancing sebuah Tuna!!'),
+    nl,
+    write('          /"*._         _'),nl,
+    write('      .-*'`    `*-.._.-'/'),nl,
+    write('    < * ))     ,       ( '),nl,
+    write('      `*-._`._(__.--*"`.\\ '),nl,
+    retractall(expFishing(Z)),
+    Z1 is Z+30,
     asserta(expFishing(Z1)),   
     changeItemCount('catfish',1),
     asserta(levelFishing(Y1)),!.
 
 
 checkLevelFishing(X):-
-    X>500,
+    X100,
     levelFishing(Y),
     Y1 is Y+1,
     write('*===============+=+============||=============+=+=========*'),nl,
@@ -205,7 +215,7 @@ checkLevelFishing(X):-
     levelFishing(Y),
     Y1 is Y+1,
     write('*===============+=+============||=============+=+=========*'),nl,
-    write('Selamat kamu nail level, sekarang kamu memiki fishing level'),
+    write('Selamat kamu naik level, sekarang kamu memiki fishing level'),
     write(Y1),
     write('.'),nl,
     write('*===============+=+============||=============+=+=========*'),nl,
