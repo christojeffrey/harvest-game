@@ -45,6 +45,6 @@
 :- dynamic(playerState/1).
 
 % fakta mengenai ranching (1 hari cuma bisa ranching 1 kali)
-:- dynamic(chickenRanched/0).
-:- dynamic(sheepRanched/0).
-:- dynamic(cowRanched/0).
+:- dynamic(chickenCooldown/1).
+:- dynamic(sheepCooldown/1).
+:- dynamic(cowCooldown/1).
