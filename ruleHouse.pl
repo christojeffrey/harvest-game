@@ -7,7 +7,7 @@
 
 % rule
 house :-
-    % playerLoc(Baris, Kolom), houseLoc(Baris,Kolom),!,
+    playerLoc(X, Y), houseLoc(X,Y),!,
     retract(playerState(_)),
     assertz(playerState('house')),
     write('welcome home!\n'),
@@ -18,8 +18,8 @@ house :-
     write('- writeDiary\n'),
     write('- readDiary\n'),
     write('- exitHouse\n').
-% house:-
-%     write('kamu sedang tidak di lokasi rumah. pergilah kesana terlebih dahulu.\n').
+house:-
+    write('kamu sedang tidak di lokasi rumah. pergilah kesana terlebih dahulu.\n').
 
 sleep :-
     playerState('house'),!,

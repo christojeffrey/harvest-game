@@ -32,13 +32,12 @@ equipmentList('fishing rod').
 % command sementara selagi blom ada startGame
 % rule
 market :- 
-% cek apakah dia ada di tile market,
-% cek apakah dia sudah melakukan start
+    playerLoc(X,Y), marketPlaceLoc(X,Y),
     playerState('start'),!,
     isCommandAllowed,
     retract(playerState(_)),
     assertz(playerState('market')),
-    write('welcome to market!'),
+    write('welcome to market!'),nl,
     write('what do you want to do?\n'),
     write('1. buy\n'),
     write('2. sell\n'),

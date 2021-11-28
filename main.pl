@@ -9,9 +9,11 @@
 %include help
 % :- include('ruleHelp.pl').
 
-%i include rule yang dapat diakses setelah startGame
+% include rule yang dapat diakses setelah startGame
 :- include('start.pl').
 
+% include rule status
+:- include('ruleStatus.pl').
 % include rule yang dapat diakses berdasarkan lokasi saat ini
 :- include('ruleHouse.pl').
 :- include('ruleMarket.pl').

@@ -99,93 +99,92 @@ map :-
     write('kamu tidak bisa melihat map saat sedang melakukan explorasi atau belum memulai game\n').
 
 d:-
-    playerState('start'),!,
+    playerState('start'),
     playerLoc(X,Y),
-    X1 = X +1,
+    X1 is X + 1,
     isBorderKanan(X1,Y),
-    write('Mentok gaiss..').
+    write('Mentok gaiss..'),!.
 
 d:-
-    playerState('start'),!,
+    playerState('start'),
     playerLoc(X,Y),
-    X1 = X +1,
+    X1 is X +1,
     waterLoc(X1,Y),
-    write('Ati-ati nyebur..').
+    write('Ati-ati nyebur..'),!.
 
 d:-
-    playerState('start'),!,
+    playerState('start'),
     playerLoc(X,Y),
     X1 is X+1,
     retractall(playerLoc(X,Y)),
     assertz(playerLoc(X1,Y)),
-        write('Berhasil melangkah ke kanan 1 tile'),nl.
+    write('Berhasil melangkah ke kanan 1 tile'),nl,!.
 d :-
     write('kamu tidak bisa berpindah saat sedang eksplorasi\n').
 w:-
-    playerState('start'),!,
+    playerState('start'),
     playerLoc(X,Y),
     Y1 is Y-1,
     isBorderAtas(X,Y1),
-    write('Mentok gaiss..').
+    write('Mentok gaiss..'),!.
 w:-
-    playerState('start'),!,
+    playerState('start'),
     playerLoc(X,Y),
     Y1 is Y-1,
     waterLoc(X,Y1),
-    write('Ati-ati nyebur..,').
+    write('Ati-ati nyebur..,'),!.
 
 w:-
-    playerState('start'),!,
+    playerState('start'),
     playerLoc(X,Y),
     Y1 is Y-1,
     retractall(playerLoc(X,Y)),
     asserta(playerLoc(X,Y1)),
-    write('Berhasil melangkah ke atas 1 tile'),nl,
-    !.
+    write('Berhasil melangkah ke atas 1 tile'),nl,!.
 w :-
     write('kamu tidak bisa berpindah saat sedang eksplorasi\n').
 s:-
-    playerState('start'),!, 
+    playerState('start'), 
     playerLoc(X,Y),
     Y1 is Y+1,
     isBorderBawah(X,Y1),
-    write('Mentok gaiss..').
+    write('Mentok gaiss..'),!.
 s:-
-    playerState('start'),!,
+    playerState('start'),
     playerLoc(X,Y),
     Y1 is Y+1,
     waterLoc(X,Y1),
-    write('Ati-ati nyebur..').
+    write('Ati-ati nyebur..'),!.
 
 s:-
-    playerState('start'),!,
+    playerState('start'),
     playerLoc(X,Y),
     Y1 is Y+1,
     retractall(playerLoc(X,Y)),
     asserta(playerLoc(X,Y1)),
-    write('Berhasil melangkah ke bawah 1 tile'),nl.
+    write('Berhasil melangkah ke bawah 1 tile'),nl,!.
 
 s :-
     write('kamu tidak bisa berpindah saat sedang eksplorasi\n').
 a:-
-    playerState('start'),!,
+    playerState('start'),
     playerLoc(X,Y),
     X1 is X -1,
     isBorderKiri(X1,Y),
-    write('Mentok gaiss..').
+    write('Mentok gaiss..'),!.
 
 a:-
-    playerState('start'),!,
+    playerState('start'),
     playerLoc(X,Y),
     X1 is X -1,
     waterLoc(X1,Y),
-    write('Ati-ati nyebur..').
+    write('Ati-ati nyebur..'),!.
 a:-
-    playerState('start'),!,
+    playerState('start'),
     playerLoc(X,Y),
     X1 is X-1,
     retractall(playerLoc(X,Y)),
     asserta(playerLoc(X1,Y)),
-    write('Berhasil melangkah kekiri 1 tile'),nl.
+    write('Berhasil melangkah kekiri 1 tile'),nl,!.
 a :-
     write('kamu tidak bisa berpindah saat sedang eksplorasi\n').
