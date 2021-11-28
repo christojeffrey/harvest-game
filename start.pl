@@ -155,7 +155,7 @@ classPerk :-
         (Class = rancher, 
             write('karena kamu seorang rancher, kamu mendapatkan 3 buah chicken dan 1 buah cow!\n'),
             rancherArt,
-            changeItemCount('chicken', 3), changeItemCount('cow', 1)
+            changeItemCount('chicken', 3), changeItemCount('cow', 1)    
         )
     ).
 farmerArt :-
