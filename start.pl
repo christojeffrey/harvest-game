@@ -23,7 +23,7 @@ start :-
     write('1. Farmer'), nl,
     write('2. Fisherman'), nl,
     write('3. Rancher'), nl,
-    checkInput('Pilih Class anda dengan menginput nomornya disini: ', Class, checkClass, 'Invalid Input!'),
+    checkInput('Pilih Class anda dengan menginput nomornya disini', Class, checkClass, 'Invalid Input!'),
     getClass(Class). 
 start :- write('kamu belum start game atau kamu sudah bermain!.\n coba masukkan perintah startGame untuk memulai atau exitGame untuk keluar.\n').
 
@@ -130,7 +130,7 @@ getClass(Class) :-
     retract(playerState(_)),
     classPerk,
     assertz(playerState('start')),
-    write('\ngunakan command help untuk mengetahui semua hal yang bisa kamu lakukan!\n coba ketikkan map.\n').
+    write('\ngunakan command help untuk mengetahui semua hal yang bisa kamu lakukan!\ncoba ketikkan map.\n').
 
 
 % Ini buat reset dan retract Classnya
@@ -159,8 +159,26 @@ classPerk :-
         )
     ).
 farmerArt :-
-write('farmer!').
+write('         wWWWw               wWWWw'),nl,
+write('   vVVVv (___) wWWWw         (___)  vVVVv'),nl,
+write('   (___)  ~Y~  (___)  vVVVv   ~Y~   (___)'),nl,
+write('    ~Y~   \\|    ~Y~   (___)    |/    ~Y~'),nl,
+write('    \\|   \\ |/   \\| /  \\~Y~/   \\|    \\ |/'),nl,
+write('   \\\\|// \\\\|// \\\\|/// \\\\|//  \\\\|// \\\\\\|///'),nl,
+write('jgs^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'),nl.
 fishermanArt :-
-write('fisherman!').
+write('       .'),nl,
+write('      ":"'),nl,
+write('    ___:____     |"\\/"|'),nl,
+write('  ,\'        `.    \\  /'),nl,
+write('  |  O        \\___/  |'),nl,
+write('~^~^~^~^~^~^~^~^~^~^~^~^~'),nl.
 rancherArt :-
-write('rancher!').
+    write('                ,/         \\,'),nl,
+    write('               ((__,-"""-,__))'),nl,
+    write('                `--)~   ~(--`'),nl,
+    write('               .-\'(       )`-,'),nl,
+    write('               `~~`d\\   /b`~~`'),nl,
+    write('                   |     |'),nl,
+    write('                   (6___6)'),nl,
+    write('                    `---`'),nl.

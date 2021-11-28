@@ -32,8 +32,14 @@ dig :-
         playerLoc(MyX, MyY),
         assertz(diggedLoc(MyX, MyY)),
         write('you digged a tile.\n'),!,
+        addMainEXPByX(5),nl,
+        class(Class),
+        (Class = 'farmer' ->(
+            addFarmingEXPByX(30)
+        );(
+            addFarmingEXPByX(15)
+        )),
         digTime(ShovelLevel)
-
     );(
         write('kamu tidak mempunya shovel\n')
     )).
@@ -65,6 +71,13 @@ plant :-
     assertz(plantedLoc(MyX, MyY, TobePlanted,CD, CT)),
     retract(diggedLoc(MyX, MyY)),
     write('you planted a '), write(TobePlanted), write(' seed.\n'),
+    addMainEXPByX(5),nl,
+    class(Class),
+    Class = 'farmer' ->(
+        addFarmingEXPByX(30)
+    );(
+        addFarmingEXPByX(15)
+    ),
     addTimeByX(2).
 
 plant :-
@@ -112,10 +125,18 @@ harvest :-
     currentDay(CD),
     (PlantDay < CD  ->(
         % bisa harvest
-        % sekali harvest, dapet 2 biji. generous dikit lah
-        changeItemCount(PlantName, 2),
-        write('kamu mendapatkan 2 buah '), write(PlantName), write('!\n'),
+        % drop rate tergantung level farming
+        levelFarming(LF),
+        changeItemCount(PlantName, LF),
+        write('kamu mendapatkan '), write(LF), write(' buah '), write(PlantName), write('!\n'),
         retract(plantedLoc(PX, PY, PlantName,PlantDay,_)),
+        addMainEXPByX(5),nl,
+        class(Class),
+        Class = 'farmer' ->(
+            addFarmingEXPByX(30)
+        );(
+            addFarmingEXPByX(15)
+        ),
         addTimeByX(2)
 
     );(
@@ -124,4 +145,5 @@ harvest :-
     )).
 harvest :-
     write('you can\'t harvest this tile!\nkalau belum ditanam,gunakan command plant.\n(or the game hasn\'t been started yet)').
+
 
