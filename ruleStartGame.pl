@@ -4,6 +4,7 @@
 % :- include('globalFact.pl').
 
 startGame:-
+    \+ playerState(_),!,
     assertz(playerState('startGame')),
     write('                     \''), nl,
     write('              .      \'      .'), nl,
@@ -31,15 +32,13 @@ startGame:-
     write('%                              ~Harvest iPhone 13~                             %'), nl,
     write('% 1. start       : untuk memulai petualanganmu                                 %'), nl,
     write('% 2. help        : menampilkan segala bantuan                                  %'), nl,
-    write('% 3. exitGame    : menampilkan segala bantuan                                  %'), nl,
+    write('% 3. exitGame    : Keluar dari pemainan                                        %'), nl,
     write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'), nl.
 
+startGame :-
+    write('Game sudah dimulai\nUntuk keluar gunakan exitGame').
 exitGame :-
     playerState(_),!, write('game berakhir. good bye!\n'), resetAllState,!.
 
 exitGame :-
     write('kamu tidak sedang bermain\n').
-
-% untuk melakukan reset semua dynamic fact di globalFact tapi belom dibikin. agak nguli.
-resetAllState :-
-    retractall(playerState(_)).

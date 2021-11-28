@@ -74,6 +74,7 @@ buy :-
     write('masukkan nama item yang ingin kamu beli\n> '),
     read(ItemToBuy),
     proccesBuy(ItemToBuy),
+    goalState,
     addTimeByX(2).
 
 buy :-

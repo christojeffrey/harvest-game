@@ -123,3 +123,20 @@ helperFindItem(_, ItemList, ItemNameCountLevel) :-
 helperFindItem(ItemNameQuery, ItemList, ItemNameCountLevel) :-
     ItemList = [H | T], H = [ItemName, _, _],
     (ItemName = ItemNameQuery -> ItemNameCountLevel = H; helperFindItem(ItemNameQuery, T, ItemNameCountLevel)). 
+
+
+% rule untuk fail dan goal state. 
+% goal state digunakan setiap kali player mendapatkan uang
+goalState :-
+    gold(Gold),
+    Gold >= 20000 ->(
+        write('uang kamu telah mencapai 20.000!'),nl,
+        write('selamat, kamu telah berhasil membayar semua hutangmu!'),nl,
+        resetAllState
+    );(
+        true
+    ).
+% untuk melakukan reset semua dynamic fact di globalFact tapi belom dibikin. agak nguli.
+resetAllState :-
+    retractall(playerState(_)).
+

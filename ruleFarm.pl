@@ -25,10 +25,25 @@ dig :-
     playerState('start'),!,
     isCommandAllowed,
     isMyLocNotaSpecialTile, !,
-    playerLoc(MyBaris, MyKolom),
-    assertz(diggedLoc(MyBaris, MyKolom)),
-    write('you digged a tile.\n'),
-    addTimeByX(2).
+    findItem('shovel', ShovelDetail),
+    (ShovelDetail \= [] ->(
+        ShovelDetail = [_,_,ShovelLevel],
+        playerLoc(MyBaris, MyKolom),
+        assertz(diggedLoc(MyBaris, MyKolom)),
+        write('you digged a tile.\n'),
+        ((
+            ShovelLevel == 1,
+            addTimeByX(4)
+        );(
+            ShovelLevel == 2,
+            addTimeByX(2)
+        );(
+            ShovelLevel == 3,
+            addTimeByX(1)
+        ))
+    );(
+        write('kamu tidak mempunya shovel\n')
+    )).
 dig :-
     write('you cannot dig this tile because it\'s a special tile!\n (or the game hasn\'t been started yet)').
 

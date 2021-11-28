@@ -45,12 +45,8 @@ failState :-
     currentDay(CD),
     (CD > 5,!,
     write('waktumu sudah habis, game berakhir.\n'),
-    retractAll, fail; write('kamu masih punya waktu untuk mencari uang\n')).
+    resetAllState, fail; write('kamu masih punya waktu untuk mencari uang\n')).
 
-
-% tambahkan retract semuanya
-retractAll :-
-    retract(playerState(_)).
 
 
 
@@ -60,9 +56,8 @@ writeDiary:-
     playerState('house'),!,
     write('dear diary,(tulis menggunakan petik dua diawal dan diakhir sebelum titik)\n>'),
     read(X), atom_codes(DiaryText,X),
-    write('diary text'),nl,
-    write(DiaryText),
-    assertz(diary(CD, DiaryText)).
+    assertz(diary(CD, DiaryText)),
+    write('diary berhasil ditulis'),nl.
 
 writeDiary:-
     write('kamu tidak bisa menulis diary. kamu sedang tidak dirumah atau kamu sudah meulis diary hari ini.\n').
