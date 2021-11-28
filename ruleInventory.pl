@@ -6,12 +6,14 @@
 
 
 inventory :-
+    playerState('start'),!,
     write('here\'s all of the item that you have!('),
     totalItemCount(Total), write(Total), write('/100)\n'),
     (Total = 0 -> write('kamu tidak punya barang apa-apa\n');
     writeAllItems).
 
-
+inventory :-
+    write('kamu tidak bisa mengakses inventory ketika sedang melakukan eksplorasi,\natau ketika belum memulai game').
 % write all item disesuaikan dengan spek
 % contoh output
 % - 1 Level 1 shovel

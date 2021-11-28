@@ -3,8 +3,7 @@
 % Include file global
 :- include('globalFact.pl').
 :- include('globalRule.pl').
-:- include('ruleFishing.pl').
-:- include('ruleMap.pl').
+
 % Fact untuk Comparison Input Class
 checkClass(1).
 checkClass(2).
@@ -43,8 +42,8 @@ assertBasic :-
     setInventory,
     initMap,
     assertz(currentDay(1)),
-    % current time 7, kek dari jam 7 pagi. total waktunya sampe 24 nti
-    assertz(currentTime(7)).
+    % current time 6, kek dari jam 6 pagi. kek sehari ada 24 jam, trus dia suruh bobok kalo udah >= jam 22.00
+    assertz(currentTime(6)).
     
 % buat assert item
 setInventory :-
@@ -156,7 +155,7 @@ classPerk :-
         (Class = rancher, 
             write('karena kamu seorang rancher, kamu mendapatkan 3 buah chicken dan 1 buah cow!\n'),
             rancherArt,
-            changeItemCount('chicken', 3), changeItemCount('cow')
+            changeItemCount('chicken', 3), changeItemCount('cow', 1)
         )
     ).
 farmerArt :-
