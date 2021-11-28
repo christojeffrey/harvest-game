@@ -59,7 +59,8 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
                 AddedRanchEXP is 10 * MilkProduce,
                 addRanchingEXPByX(AddedRanchEXP),
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
-                write('Total Ranch EXP kamu adalah '), write(expRanching), write(' Ranch EXP!\n'));
+                expRanching(TotalEXPRanch),
+                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'));
                 (CowQty >= 5, cowMaxProduce(4, MaxMilk),
                 ExtraCow is CowQty - 4,
                 MaxMilk is MaxMilk + ExtraCow,
@@ -76,7 +77,8 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
                 AddedRanchEXP is 10 * MilkProduce,
                 addRanchingEXPByX(AddedRanchEXP),
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
-                write('Total Ranch EXP kamu adalah '), write(expRanching), write(' Ranch EXP!\n')
+                expRanching(TotalEXPRanch),
+                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n')
             ))
             );(
                 cowRanched, write('Yah kamu udah mengambil susu sapi kamu tadi. Coba lagi besok ya\n')
@@ -104,7 +106,8 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
                 AddedRanchEXP is 5 * WoolProduce,
                 addRanchingEXPByX(AddedRanchEXP),
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
-                write('Total Ranch EXP kamu adalah '), write(expRanching), write(' Ranch EXP!\n'));
+                expRanching(TotalEXPRanch),
+                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'));
                 (SheepQty >= 5, sheepMaxProduce(4, MaxWool),
                 ExtraSheep is SheepQty - 4,
                 MaxWool is ExtraSheep + MaxWool,
@@ -121,7 +124,8 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
                 AddedRanchEXP is 5 * WoolProduce,
                 addRanchingEXPByX(AddedRanchEXP),
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
-                write('Total Ranch EXP kamu adalah '), write(expRanching), write(' Ranch EXP!\n')))
+                expRanching(TotalEXPRanch),
+                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n')))
             );(
                 sheepRanched, write('Yah kamu udah mengambil wol domba kamu tadi. Coba lagi besok ya\n')
             )
@@ -148,7 +152,8 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
                 AddedRanchEXP is 7 * EggProduce,
                 addRanchingEXPByX(AddedRanchEXP),
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
-                write('Total Ranch EXP kamu adalah '), write(expRanching), write(' Ranch EXP!\n'));
+                expRanching(TotalEXPRanch),
+                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'));
                 (ChickenQty >= 5, chickenMaxProduce(4, MaxEgg),
                 ExtraChicken is ChickenQty - 4,
                 MaxEgg is MaxEgg + ExtraChicken,
@@ -165,7 +170,8 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
                 AddedRanchEXP is 7 * EggProduce,
                 addRanchingEXPByX(AddedRanchEXP),
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
-                write('Total Ranch EXP kamu adalah '), write(expRanching), write(' Ranch EXP!\n')))
+                expRanching(TotalEXPRanch),
+                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n')))
             );(
                 chickenRanched, write('Yah kamu udah mengambil telur ayam kamu tadi. Coba lagi besok ya\n')
             )
