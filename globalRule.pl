@@ -20,6 +20,27 @@ checkInput(Question, Input, Comparison, ErrorMessage) :-
             fail
         ).
 
+% rule untuk menambah EXP (asumsi masukan EXP selalu valid ya)
+
+addMainEXPByX(X) :-
+    retract(exp(CurrentEXP)),
+    NewEXP is CurrentEXP + X,
+    assertz(exp(NewEXP)).
+
+addFarmingEXPByX(X) :-
+    retract(expFarming(CurrentEXP)),
+    NewEXP is CurrentEXP + X,
+    assertz(expFarming(NewEXP)).
+
+addFishingEXPByX(X) :-
+    retract(expFishing(CurrentEXP)),
+    NewEXP is CurrentEXP + X,
+    assertz(expFishing(NewEXP)).
+
+addRanchingEXPByX(X) :-
+    retract(expRanching(CurrentEXP)),
+    NewEXP is CurrentEXP + X,
+    assertz(expRanching(NewEXP)).
 
 %rule untuk time
 
