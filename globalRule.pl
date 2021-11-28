@@ -199,5 +199,26 @@ goalState :-
     ).
 % untuk melakukan reset semua dynamic fact di globalFact tapi belom dibikin. agak nguli.
 resetAllState :-
-    retractall(playerState(_)).
-
+    retractall(playerState(_)),
+    retractall(level(_)),
+    retractall(levelFarming(_)),
+    retractall(levelFishing(_)),
+    retractall(levelRanching(_)),
+    retractall(expFarming(_)),
+    retractall(expFishing(_)),
+    retractall(expRanching(_)),
+    retractall(gold(_)),
+    retractall(exp),
+    retractall(currentDay(_)),
+    retractall(currentTime(_)),
+    retractall(items(_)),
+    retractall(lebarMap(_)),    
+    retractall(tinggiMap(_)),
+    retractall(playerLoc(_,_)),
+    retractall(questLoc(_,_)),
+    retractall(marketPlaceLoc(_,_)),
+    retractall(ranchLoc(_,_)),
+    retractall(houseLoc(_,_)),
+    retractall(waterLoc(_,_)),
+    retractall(diggedLoc(_,_)),
+    retractall(plantedLoc(_,_,_,_,_)).

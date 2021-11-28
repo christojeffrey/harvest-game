@@ -59,7 +59,6 @@ initializingItems(List) :-
 
 % buat assert map and loc
 initMap:-
-        write('success init map'),
     random(10,20,X),
     random(15,20,Y),
     retractall(lebarMap(_)),
