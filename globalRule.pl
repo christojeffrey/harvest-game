@@ -30,17 +30,50 @@ addMainEXPByX(X) :-
 addFarmingEXPByX(X) :-
     retract(expFarming(CurrentEXP)),
     NewEXP is CurrentEXP + X,
-    assertz(expFarming(NewEXP)).
+    assertz(expFarming(NewEXP)),
+    checkFarmingEXP.
 
 addFishingEXPByX(X) :-
     retract(expFishing(CurrentEXP)),
     NewEXP is CurrentEXP + X,
-    assertz(expFishing(NewEXP)).
+    assertz(expFishing(NewEXP)),
+    checkFishingEXP.
 
 addRanchingEXPByX(X) :-
     retract(expRanching(CurrentEXP)),
     NewEXP is CurrentEXP + X,
-    assertz(expRanching(NewEXP)).
+    assertz(expRanching(NewEXP)),
+    checkRanchingEXP.
+
+checkMainEXP :-
+    exp(MainEXP),
+    retract(level(MainLevel)),
+    NewLevel is ceiling(div(MainEXP, 100)),
+    write('Level kamu saat ini adalah '), write(NewLevel),
+    assertz(level(NewLevel)).
+
+checkFishingEXP :-
+    expFishing(FishingEXP),
+    retract(levelFishing(FishingLevel)),
+    NewLevel is ceiling(div(FishingEXP, 100)),
+    write('Level fishing kamu saat ini adalah '), write(NewLevel),
+    assertz(levelFishing(NewLevel)).
+
+checkFarmingEXP :-
+    expFarming(FarmingEXP),
+    retract(levelFarming(FarmingLevel)),
+    NewLevel is ceiling(div(FarmingEXP, 100)),
+    write('Level farming kamu saat ini adalah '), write(NewLevel),
+    assertz(levelFarming(NewLevel)).
+
+checkRanchingEXP :-
+    expRanching(RanchingEXP),
+    retract(levelRanching(RanchingLevel)),
+    NewLevel is ceiling(div(RanchingEXP, 100)),
+    write('Level ranching kamu saat ini adalah '), write(NewLevel),
+    assertz(levelRanching(NewLevel)).
+    
+
 
 %rule untuk time
 
