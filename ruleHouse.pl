@@ -46,7 +46,7 @@ sleep :-
 % game akan berakhir ketika day 5 sudah berakhir.
 failState :-
     currentDay(CD),
-    (CD > 5,!,
+    (CD > 30,!,
     write('waktumu sudah habis, game berakhir.\n'),
     resetAllState, fail; write('kamu masih punya waktu untuk mencari uang\n')).
 
