@@ -72,7 +72,7 @@ ongoingQuest :-
     write('Saat ini kamu memiliki :'), nl,
     write('- '), write(FirstQty), write(' '), write(FirstItem), nl,
     write('- '), write(SecondQty), write(' '), write(SecondItem), nl,
-    write('- '), write(ThirdQty), write(' '), write(ThirdItem), nl.
+    write('- '), write(ThirdQty), write(' '), write(ThirdItem), nl,
     write('Jika kamu sudah memiliki jumlah item yang cukup,\n'),
     write('Kamu dapat mengumpulkan quest dengan mengetik "submitQuest.').
 
