@@ -69,8 +69,7 @@ goFishing(X):-
     write('Selamat kamu berhasil memancing sebuah Tuna!!'),nl,
     write(' __v_'),nl,
     write('(____ /{'),nl,
-    Z1 is Z+15,
-    asserta(expFishing(Z1)), 
+    addFishingEXPByX(15),
     changeItemCount('tuna',1),!.
 
 goFishing(X):-
@@ -89,9 +88,7 @@ goFishing(X):-
     write('  > O )<)    _  ('),nl,
     write('  `-._  _.:\' `-.\\ '),nl,
     write('     `` \\ '),nl,
-    retractall(expFishing(Z)),
-    Z1 is Z+30,
-    asserta(expFishing(Z1)), 
+    addFishingEXPByX(30),
     changeItemCount('salmon',1),!.
 
 goFishing(X):-
@@ -108,9 +105,7 @@ goFishing(X):-
     write('      .-*\'`    `*-.._.-\'/'),nl,
     write('    < * ))     ,       ( '),nl,
     write('      `*-._`._(__.--*"`.\\ '),nl,
-    retractall(expFishing(Z)),
-    Z1 is Z+40,
-    asserta(expFishing(Z1)),   
+    addFishingEXPByX(40),   
     changeItemCount('catfish',1),!.
 
 %Memancing jika dia seorang fishbiasaer
@@ -125,9 +120,7 @@ goFishing(X):-
     write('Selamat kamu berhasil memancing sebuah Tuna!!'),nl,
     write(' __v_'),nl,
     write('(____ /{'),nl,
-    Z1 is Z+10,
-    retractall(expFishing(Z)),
-    asserta(expFishing(Z1)), 
+    addFishingEXPByX(10), 
     changeItemCount('tuna',1),!.
 
 goFishing(X):-
@@ -146,9 +139,7 @@ goFishing(X):-
     write('  > O )<)    _  ('),nl,
     write('  `-._  _.:\' `-.\\ '),nl,
     write('     `` \\ '),nl,
-    retractall(expFishing(Z)),
-    Z1 is Z+25,
-    asserta(expFishing(Z1)), 
+    addFishingEXPByX(25), 
     changeItemCount('salmon',1),!.
 
 goFishing(X):-
@@ -164,9 +155,7 @@ goFishing(X):-
     write('      .-*\'`    `*-.._.-\'/'),nl,
     write('    < * ))     ,       ( '),nl,
     write('      `*-._`._(__.--*"`.\\ '),nl,
-    retractall(expFishing(Z)),
-    Z1 is Z+35,
-    asserta(expFishing(Z1)),   
+    addFishingEXPByX(35),   
     changeItemCount('catfish',1),!.
 
 %Jika dia orang lain
@@ -181,9 +170,7 @@ goFishing(X):-
     write('Selamat kamu berhasil memancing sebuah Tuna!!'),nl,
     write(' __v_'),nl,
     write('(____ /{'),nl,
-    Z1 is Z+5,
-        retractall(expFishing(Z)), 
-    asserta(expFishing(Z1)), 
+    addFishingEXPByX(5),
     changeItemCount('tuna',1),!.
 
 goFishing(X):-
@@ -200,9 +187,7 @@ goFishing(X):-
     write('  > O )<)    _  ('),nl,
     write('  `-._  _.:\' `-.\\ '),nl,
     write('     `` \\ '),nl,
-        retractall(expFishing(Z)), 
-    Z1 is Z+15,
-    asserta(expFishing(Z1)), 
+    addFishingEXPByX(15), 
     changeItemCount('salmon',1),!.
 
 goFishing(X):-
@@ -216,9 +201,7 @@ goFishing(X):-
     write('      .-*\'`    `*-.._.-\'/'),nl,
     write('    < * ))     ,       ( '),nl,
     write('      `*-._`._(__.--*"`.\\ '),nl,
-    retractall(expFishing(Z)),
-    Z1 is Z+30,
-    asserta(expFishing(Z1)),   
+    addFishingEXPByX(30),  
     changeItemCount('catfish',1),!.
 
 
