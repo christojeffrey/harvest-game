@@ -13,8 +13,10 @@ help :-
 
 help :- 
     playerState('startGame'), !, 
-    write('1. start : Starts the game'), nl,
-    write('2. help  : Shows all available commands').
+    write('1. start     : Starts the game'), nl,
+    write('2. help      : Shows all available commands'),nl,
+    write('3. exitGame  : exit the game').
+    
 
 help :- 
     playerState('start'), !, 
