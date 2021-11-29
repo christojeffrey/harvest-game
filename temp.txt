@@ -1,0 +1,22 @@
+quest :-
+    (generatequestitems(FirstItem, SecondItem, ThirdItem),
+    random(1, 11, FirstQty),
+    random(1, 11, SecondQty),
+    random(1, 11, ThirdQty),
+
+    assertz(quest(FarmQty, FishQty, RanchQty, FarmItem, FishItem, RanchItem)),
+    write('You got a new quest!'), nl,
+    nl,
+    write('You need to collect:'), nl,
+    write('- '), write(FarmQty), write(' '), write(FarmItem), nl,
+    write('- '), write(FishQty), write(' '), write(FishItem), nl,
+    write('- '), write(RanchQty), write(' '), write(RanchItem));
+    (quest(FarmQty, FishQty, RanchQty, FarmItem, FishItem, RanchItem),
+    write('You already have an ingoing quest!'), nl,
+    write('Your current quest is : '), nl,
+    write('You need to collect:'), nl,
+    write('- '), write(FarmQty), write(' '), write(FarmItem), nl,
+    write('- '), write(FishQty), write(' '), write(FishItem), nl,
+    write('- '), write(RanchQty), write(' '), write(RanchItem), nl, nl,
+    write('This us what you have now')
+    ).

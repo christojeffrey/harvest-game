@@ -1,6 +1,3 @@
-:- include('globalFact.pl').
-:- include('globalRule.pl').
-
 fish:-
     playerLoc(X,Y),
     X1 is X-1,
