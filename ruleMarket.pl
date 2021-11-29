@@ -80,7 +80,7 @@ buy :-
     write('kamu tidak bisa melakukan buy.\n inventory kamu sudah penuh atau kamu tidak ada di market. ke market.\nJual inventorymu atau gunakan inventorymu, atau pergilah ke market.\n').
 
 % pembantu dari rule buy
-proccesBuy(ItemName) :-
+proccesBuy(PrevName) :-
     addSpacertoSeed(PrevName, ItemName),
     priceList(ItemName, ItemPrice), !,
     write('Masukkan jumlah item yang ingin kamu beli \n> '),
@@ -147,20 +147,7 @@ helperShowAllSellItem(ItemList) :-
     ),
     helperShowAllSellItem(T).
 
-addSpacertoSeed(PrevName,ItemName) :-
-    PrevName == 'cornseed' -> (
-        ItemName = 'corn seed'
-    );(
-        prevName == 'carrotseed' ->(
-            ItemName = 'carrot seed'
-        );(
-            prevName == 'wheatseed' -> (
-                ItemName = 'wheat seed'
-            );(
-                ItemName is PrevName
-            )
-        )
-    ).
+
 
 processSell(PrevName) :-
     addSpacertoSeed(PrevName, ItemName),
