@@ -35,11 +35,17 @@ generateRewardGoldEXP(IdxFirst, IdxSecond, IdxThird, FirstQty, SecondQty, ThirdQ
 checkQuest :- quest(_,_,_,_,_,_,_,_).
 
 quest :-
+    playerLoc(PX,PY),
+    questLoc(PX,PY),!,
     ((checkQuest, ongoingQuest);
     (\+ checkQuest, 
     write('Saat ini kamu tidak memiliki quest.\n'),
     checkInput('Apakah kamu ingin mengambil quest baru? Ketik "mau." bila iya atau "tidak." bila tidak', Offer, offerQuest, 'Input tidak dikenali, silahkan coba ulang'),
     checkOffer(Offer))).
+
+quest :-
+    write('kamu tidak bisa menjalankan rule quest!'),nl,
+    write('jalankan game dan pergilah ke tile quest!'),nl.
 
 checkOffer(Offer) :-
     ((Offer == 'mau', 
