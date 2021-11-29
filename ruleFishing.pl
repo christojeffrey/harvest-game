@@ -54,7 +54,8 @@ goFishing(X):-
 
 %nilai 0-3 Zonk, 4-6 Tuna, 7-8 Salmon, 9=< catfish
 goFishing(X):-
-    class(fisherman),
+    class(Class),
+    Classs == 'fisherman',
     levelFishing(Z),
     X1 is X+Z,
     X1 < 4,
@@ -64,7 +65,8 @@ goFishing(X):-
     nl,!.
 
 goFishing(X):-
-    class(fisherman),
+    class(Class),
+    Class == 'fisherman',
     levelFishing(Z),
     Z>=1,
     Z<=3,
@@ -82,7 +84,7 @@ goFishing(X):-
     asserta(levelFishing(Y1)),!.
 
 goFishing(X):-
-    class(fisherman),
+    class('fisherman'),
     levelFishing(L),
     X1 is X+3,
     X1>=7,
@@ -103,7 +105,7 @@ goFishing(X):-
     asserta(levelFishing(Y1)),!.
 
 goFishing(X):-
-    class(fisherman),
+    class('fisherman'),
     levelFishing(L),
     L>=3,
     X1 is X+3,
