@@ -31,15 +31,14 @@ fish:-
     !.
 
 goFishing(_):-
-    findItem(EqName, TheItem),
-    TheItem \== [], TheItem  = [TheItemName, TheItemCount, _], 
+    findItem(_, TheItem),
+    TheItem \== [], TheItem  = [_, TheItemCount, _], 
     TheItemCount <1,
     write('Maaf kamu ga punya fishing rod!!'),nl,
     write('Beli di Market dulu'),nl,
     !.
 
 goFishing(_):-
-    levelFishing(_),
     totalItemCount(Total),
     Total=:=100,
     write('Item penuh, kosongkan inventory terlebih dahulu!'),
