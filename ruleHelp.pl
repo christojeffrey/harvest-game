@@ -29,7 +29,8 @@ help :-
     write('9.  harvest : (When on a farming tile) Harvests crop from a planted tile'), nl,
     write('10. fish    : (When near a body of water) Starts fishing'), nl,
     write('11. ranch   : (When on a ranching tile) Starts ranching'), nl,
-    write('12. help    : Shows all available commands').
+    write('12. quest   : (When on a quest tile) Starts a quest'), nl,
+    write('13. help    : Shows all available commands').
 
 help :- 
     playerState('house'), !, 
