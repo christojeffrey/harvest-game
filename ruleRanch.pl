@@ -1,6 +1,6 @@
-checkAction('chicken').
-checkAction('sheep').
-checkAction('cow').
+checkAction('ayam').
+checkAction('domba').
+checkAction('sapi').
 
 cowMaxProduce(0,0).
 cowMaxProduce(1,2).
@@ -77,7 +77,7 @@ showRanch :-
 doAction(Action, CowQty, SheepQty, ChickenQty) :-
     bonusEXPRanchClass(BonusEXP),
     totalItemCount(TotalCount),
-    (   Action = 'cow', 
+    (   Action = 'sapi', 
         ((CowQty > 0, cowCooldown(CowTime), (
             (
                 CowTime = 0, 
@@ -130,7 +130,7 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
         )
         )
     );
-    (   Action = 'sheep',
+    (   Action = 'domba',
         ((SheepQty > 0, sheepCooldown(SheepTime), (
             (
                 SheepTime = 0, 
@@ -180,7 +180,7 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
         )
         )
     );
-    (   Action = 'chicken',
+    (   Action = 'ayam',
         ((ChickenQty > 0, chickenCooldown(ChickenTime), (
             (
                 ChickenTime = 0, 
