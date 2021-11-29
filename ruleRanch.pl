@@ -77,48 +77,42 @@ showRanch :-
 doAction(Action, CowQty, SheepQty, ChickenQty) :-
     bonusEXPRanchClass(BonusEXP),
     totalItemCount(TotalCount),
-    (   Action = 'sapi', 
-        ((CowQty > 0, cowCooldown(CowTime), (
+    (   Action = 'sapi', cowCooldown(CowTime),
+        ((CowQty > 0, (
             (
                 CowTime = 0, 
                 ((CowQty < 5, cowMaxProduce(CowQty, MaxMilk),
                 random(0, MaxMilk, MilkProduce),
-                TempCount is TotalCount + MilkProduce,
                 (
                     (
-                        MilkProduce =:= 0, write('Yah sapi kamu belum ada yang menghasilkan susu. Tunggu nanti ya!\n')
+                        MilkProduce = 0, write('Yah sapi kamu belum ada yang menghasilkan susu. Tunggu nanti ya!\n')
                     );(
-                        MilkProduce > 0, TempCount =< 100, write('Sapi kamu menghasilkan '), write(MilkProduce), write(' botol susu!\n'), changeItemCount('milk', MilkProduce)
-                    );(
-                        MilkProduce > 0, TempCount > 100 , MilkProduce2 is TempCount - 100, write('Sapi kamu menghasilkan '), write(MilkProduce), write(' botol susu, tapi karena inventory kamu penuh, kamu cuma bisa menyimpan '), write(MilkProduce2), write(' botol susu!\n'), changeItemCount('milk', MilkProduce2)
+                        MilkProduce > 0, write('Sapi kamu menghasilkan '), write(MilkProduce), write(' botol susu!\n'), changeItemCount('milk', MilkProduce)
                     )
                 ),
-                refreshCowCooldown, addTimeByX(1),
+                refreshCowCooldown, addTimeByX(3),
                 AddedRanchEXP is 15 * MilkProduce + BonusEXP,
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
+                addRanchingEXPByX(AddedRanchEXP), nl,
                 expRanching(TotalEXPRanch),
-                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'),
-                addRanchingEXPByX(AddedRanchEXP));
+                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'));
                 (CowQty >= 5, cowMaxProduce(4, MaxMilk),
                 ExtraCow is CowQty - 4,
                 MaxMilk is MaxMilk + ExtraCow,
                 random(0, MaxMilk, MilkProduce),
-                TempCount is TotalCount + MilkProduce,
                 (
                     (
-                        MilkProduce =:= 0, write('Yah sapi kamu belum ada yang menghasilkan susu. Tunggu nanti ya!\n')
+                        MilkProduce = 0, write('Yah sapi kamu belum ada yang menghasilkan susu. Tunggu nanti ya!\n')
                     );(
-                        MilkProduce > 0, TempCount =< 100 , write('Sapi kamu menghasilkan '), write(MilkProduce), write(' botol susu!\n'), changeItemCount('milk', MilkProduce)
-                    );(
-                        MilkProduce > 0, TempCount > 100 , MilkProduce2 is TempCount - 100, write('Sapi kamu menghasilkan '), write(MilkProduce), write(' botol susu, tapi karena inventory kamu penuh, kamu cuma bisa menyimpan '), write(MilkProduce2), write(' botol susu!\n'), changeItemCount('milk', MilkProduce2)
+                        MilkProduce > 0, write('Sapi kamu menghasilkan '), write(MilkProduce), write(' botol susu!\n'), changeItemCount('milk', MilkProduce)
                     )
                 ),
-                refreshCowCooldown, addTimeByX(1),
+                refreshCowCooldown, addTimeByX(3),
                 AddedRanchEXP is 15 * MilkProduce + BonusEXP,
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
+                addRanchingEXPByX(AddedRanchEXP), nl,
                 expRanching(TotalEXPRanch),
-                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'),
-                addRanchingEXPByX(AddedRanchEXP)
+                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n')
             ))
             )
         ));
@@ -130,105 +124,97 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
         )
         )
     );
-    (   Action = 'domba',
-        ((SheepQty > 0, sheepCooldown(SheepTime), (
+    (   Action = 'domba', sheepCooldown(SheepTime),
+        ((SheepQty > 0, (
             (
                 SheepTime = 0, 
-                ((SheepQty < 5, chickenMaxProduce(SheepQty, MaxWool),
+                ((SheepQty < 5, sheepMaxProduce(SheepQty, MaxWool),
                 random(0, MaxWool, WoolProduce),
-                TempCount is TotalCount + WoolProduce,
                 (
                     (
-                        WoolProduce =:= 0, write('Yah domba kamu belum ada yang menghasilkan wol. Tunggu nanti ya!\n')
+                        WoolProduce = 0, write('Yah domba kamu belum ada yang menghasilkan wol. Tunggu nanti ya!\n')
                     );(
-                        WoolProduce > 0, TempCount =< 100, write('Domba kamu menghasilkan '), write(WoolProduce), write(' gulung wol!\n'), changeItemCount('wool', WoolProduce)
-                    );(
-                        WoolProduce > 0, TempCount > 100 , WoolProduce2 is TempCount - 100, write('Domba kamu menghasilkan '), write(WoolProduce), write(' gulung wol, tapi karena inventory kamu penuh, kamu cuma bisa menyimpan '), write(WoolProduce2), write(' gulung wol!\n'), changeItemCount('wool', WoolProduce2)
+                        WoolProduce > 0, write('Domba kamu menghasilkan '), write(WoolProduce), write(' gulung wol!\n'), changeItemCount('wool', WoolProduce)
                     )
                 ),
-                refreshSheepCooldown, addTimeByX(1),
+                refreshSheepCooldown, addTimeByX(2),
                 AddedRanchEXP is 12 * WoolProduce + BonusEXP,
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
+                addRanchingEXPByX(AddedRanchEXP), nl,
                 expRanching(TotalEXPRanch),
-                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'), addRanchingEXPByX(AddedRanchEXP));
+                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'));
                 (SheepQty >= 5, sheepMaxProduce(4, MaxWool),
                 ExtraSheep is SheepQty - 4,
-                MaxWool is ExtraSheep + MaxWool,
+                MaxWool is MaxWool + ExtraSheep,
                 random(0, MaxWool, WoolProduce),
-                TempCount is TotalCount + WoolProduce,
                 (
                     (
-                        WoolProduce =:= 0, write('Yah domba kamu belum ada yang menghasilkan wol. Tunggu nanti ya!\n')
+                        WoolProduce = 0, write('Yah domba kamu belum ada yang menghasilkan wol. Tunggu nanti ya!\n')
                     );(
-                        WoolProduce > 0, TempCount =< 100, write('Domba kamu menghasilkan '), write(WoolProduce), write(' gulung wol!\n'), changeItemCount('wool', WoolProduce)
-                    );(
-                        WoolProduce > 0, TempCount > 100 , WoolProduce2 is TempCount - 100, write('Domba kamu menghasilkan '), write(WoolProduce), write(' gulung wol, tapi karena inventory kamu penuh, kamu cuma bisa menyimpan '), write(WoolProduce2), write(' gulung wol!\n'), changeItemCount('wool', WoolProduce2)
+                        WoolProduce > 0, write('Domba kamu menghasilkan '), write(WoolProduce), write(' gulung wol!\n'), changeItemCount('wool', WoolProduce)
                     )
                 ),
-                refreshSheepCooldown, addTimeByX(1),
+                refreshSheepCooldown, addTimeByX(2),
                 AddedRanchEXP is 12 * WoolProduce + BonusEXP,
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
+                addRanchingEXPByX(AddedRanchEXP), nl,
                 expRanching(TotalEXPRanch),
-                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'), addRanchingEXPByX(AddedRanchEXP)))
+                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n')
+            ))
             )
         ));
         (SheepQty =< 0,
         write('Kamu tidak memiliki domba. Silahkan beli domba di market ya!\n')
-        ); 
+        );
         (SheepQty > 0, SheepTime > 0,
         write('Domba kamu baru dicukur kemarin. Silahkan tunggu '), write(SheepTime), write(' hari')
         )
         )
     );
-    (   Action = 'ayam',
-        ((ChickenQty > 0, chickenCooldown(ChickenTime), (
+    (   Action = 'ayam', chickenCooldown(ChickenTime),
+        ((ChickenQty > 0, (
             (
                 ChickenTime = 0, 
                 ((ChickenQty < 5, chickenMaxProduce(ChickenQty, MaxEgg),
                 random(0, MaxEgg, EggProduce),
-                TempCount is TotalCount + EggProduce,
                 (
                     (
-                        EggProduce =:= 0, write('Yah ayam kamu belum ada yang menghasilkan telur. Tunggu nanti ya!\n')
+                        EggProduce = 0, write('Yah ayam kamu belum ada yang menghasilkan telur. Tunggu nanti ya!\n')
                     );(
-                        EggProduce > 0, TempCount =< 100, write('Ayam kamu menghasilkan '), write(EggProduce), write(' butir telur!\n'), changeItemCount('egg', EggProduce)
-                    );(
-                        EggProduce > 0, TempCount > 100 , EggProduce2 is TempCount - 100, write('Ayam kamu menghasilkan '), write(EggProduce), write(' butir telur, tapi karena inventory kamu penuh, kamu cuma bisa menyimpan '), write(EggProduce2), write(' butir telur!\n'), changeItemCount('egg', EggProduce2)
+                        EggProduce > 0, write('Ayam kamu menghasilkan '), write(EggProduce), write(' telur!\n'), changeItemCount('egg', EggProduce)
                     )
                 ),
-                refreshChickenCooldown, addTimeByX(1),
+                refreshChickenCooldown, addTimeByX(2),
                 AddedRanchEXP is 10 * EggProduce + BonusEXP,
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
+                addRanchingEXPByX(AddedRanchEXP), nl,
                 expRanching(TotalEXPRanch),
-                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'),
-                addRanchingEXPByX(AddedRanchEXP));
+                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'));
                 (ChickenQty >= 5, chickenMaxProduce(4, MaxEgg),
                 ExtraChicken is ChickenQty - 4,
                 MaxEgg is MaxEgg + ExtraChicken,
                 random(0, MaxEgg, EggProduce),
-                TempCount is TotalCount + EggProduce,
                 (
                     (
-                        EggProduce =:= 0, write('Yah ayam kamu belum ada yang menghasilkan telur. Tunggu nanti ya!\n')
+                        EggProduce = 0, write('Yah sapi kamu belum ada yang menghasilkan susu. Tunggu nanti ya!\n')
                     );(
-                        EggProduce > 0, TempCount =< 100, write('Ayam kamu menghasilkan '), write(EggProduce), write(' butir telur!\n'), changeItemCount('egg', EggProduce)
-                    );(
-                        EggProduce > 0, TempCount > 100 , EggProduce2 is TempCount - 100, write('Ayam kamu menghasilkan '), write(EggProduce), write(' butir telur, tapi karena inventory kamu penuh, kamu cuma bisa menyimpan '), write(EggProduce2), write(' butir telur!\n'), changeItemCount('egg', EggProduce2)
+                        EggProduce > 0, write('Sapi kamu menghasilkan '), write(EggProduce), write(' botol susu!\n'), changeItemCount('egg', EggProduce)
                     )
                 ),
-                refreshChickenCooldown, addTimeByX(1),
-                AddedRanchEXP is 10 * EggProduce + BonusEXP,
+                refreshChickenCooldown, addTimeByX(2),
+                AddedRanchEXP is 15 * EggProduce + BonusEXP,
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
+                addRanchingEXPByX(AddedRanchEXP), nl,
                 expRanching(TotalEXPRanch),
-                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'),
-                addRanchingEXPByX(AddedRanchEXP)))
+                write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n')
+            ))
             )
         ));
         (ChickenQty =< 0,
         write('Kamu tidak memiliki ayam. Silahkan beli ayam di market ya!\n')
         );
         (ChickenQty > 0, ChickenTime > 0,
-        write('Ayam kamu baru diambil telurnya kemarin. Silahkan tunggu '), write(ChickenTime), write(' hari')    
+        write('Ayam kamu baru bertelur kemarin. Silahkan tunggu '), write(ChickenTime), write(' hari')
         )
         )
     ).

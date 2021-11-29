@@ -29,7 +29,7 @@ assertBasic :-
     assertz(level(0)),
     assertz(levelFarming(0)),
     assertz(levelFishing(0)),
-    assertz(levelRanching(0)),
+    assertz(levelRanching(1)),
     assertz(expFarming(0)),
     assertz(expFishing(0)),
     assertz(expRanching(0)),
