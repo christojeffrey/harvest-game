@@ -156,7 +156,7 @@ goFishing(X):-
     levelFishing(Y),
     Y>3,
     X1 is X+Y,
-    X1>=9,
+    X1>8,
     random(3,6,J),
     addTimeByX(J),
     write('Selamat kamu berhasil memancing sebuah Catfish!!'),
@@ -185,8 +185,7 @@ goFishing(X):-
     Z1 is Z+5,
         retractall(expFishing(Z)), 
     asserta(expFishing(Z1)), 
-    changeItemCount('tuna',1),
-    asserta(levelFishing(Y1)),!.
+    changeItemCount('tuna',1),!.
 
 goFishing(X):-
     levelFishing(Y),
