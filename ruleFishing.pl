@@ -3,6 +3,7 @@ fish:-
     X1 is X-1,
     waterLoc(X1,Y),
     random(0,8,Z),
+    isCommandAllowed,
     goFishing(Z),!.
 
 fish:-
@@ -10,6 +11,7 @@ fish:-
     X1 is X+1,
     waterLoc(X1,Y),
     random(0,8,Z),
+    isCommandAllowed,
     goFishing(Z),!.
 
 fish:-  
@@ -17,6 +19,7 @@ fish:-
     Y1 is Y-1,
     waterLoc(X,Y1),
     random(0,8,Z),
+    isCommandAllowed,
     goFishing(Z),!.
 
 fish:-
@@ -24,11 +27,16 @@ fish:-
     Y1 is Y+1,
     waterLoc(X,Y1),
     random(0,8,Z),
+    isCommandAllowed,
     goFishing(Z),!.
 fish:-
+    isCommandAllowed,
     write('Maaf kamu tidak berada di dekat air, Pergi ke tempat air untuk memancing!!!'),
     nl,
     !.
+
+fish:-
+    write('Sudah malam, jangan memancing, bahaya jika tertidur di air'),nl,.
 
 goFishing(_):-
     findItem(_, TheItem),
