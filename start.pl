@@ -1,9 +1,5 @@
 % set semua variabel terjadi di rule ini
 
-% Include file global
-:- include('globalFact.pl').
-:- include('globalRule.pl').
-
 % Fact untuk Comparison Input Class
 checkClass(1).
 checkClass(2).

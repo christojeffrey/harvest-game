@@ -2,6 +2,7 @@
 
 % include fakta global
 :- include('globalFact.pl').
+:- include('globalRule.pl').
 
 % include startGame
 :- include('ruleStartGame.pl').
@@ -21,4 +22,6 @@
 :- include('ruleInventory.pl').
 :- include('ruleRanch.pl').
 :- include('ruleFarm.pl').
-%include fakta2 tambahan untuk rule
+% include rule untuk Quest
+
+:- include('ruleQuest.pl').
