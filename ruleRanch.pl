@@ -21,22 +21,9 @@ chickenMaxProduce(3,5).
 chickenMaxProduce(4,7).
 
 % rule untuk waktu ranching
-reduceOrRemoveCowCooldown :-
-    retract(cowCooldown(Timer)),
-    ((Timer > 1, NewTimer is Timer - 1, assertz(cowCooldown(NewTimer)));
-    (Timer =< 1, assertz(cowCooldown(0)))).
-
-reduceOrRemoveSheepCooldown :-
-    retract(sheepCooldown(Timer)),
-    ((Timer > 1, NewTimer is Timer - 1, assertz(sheepCooldown(NewTimer)));
-    (Timer =< 1, assertz(sheepCooldown(0)))).
-
-reduceOrRemoveChickenCooldown :-
-    retract(chickenCooldown(Timer)),
-    ((Timer > 1, NewTimer is Timer - 1, assertz(chickenCooldown(NewTimer)));
-    (Timer =< 1, assertz(chickenCooldown(0)))).
 
 refreshCowCooldown :-
+    retract(cowCooldown(X)),
     levelRanching(Level),
     ((Level == 1 -> assertz(cowCooldown(12)));
     (Level == 2 -> assertz(cowCooldown(10)));
@@ -45,6 +32,7 @@ refreshCowCooldown :-
     (Level == 5 -> assertz(cowCooldown(5)))).
 
 refreshChickenCooldown :-
+    retract(chickenCooldown(X)),
     levelRanching(Level),
     ((Level == 1 -> assertz(chickenCooldown(7)));
     (Level == 2 -> assertz(chickenCooldown(6)));
@@ -53,6 +41,7 @@ refreshChickenCooldown :-
     (Level == 5 -> assertz(chickenCooldown(3)))).
 
 refreshSheepCooldown :-
+    retract(sheepCooldown(X)),
     levelRanching(Level),
     ((Level == 1 -> assertz(sheepCooldown(10)));
     (Level == 2 -> assertz(sheepCooldown(9)));
@@ -96,7 +85,7 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
                     )
                 ),
                 refreshCowCooldown, addTimeByX(1),
-                AddedRanchEXP is 10 * MilkProduce,
+                AddedRanchEXP is 15 * MilkProduce,
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
                 expRanching(TotalEXPRanch),
                 write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'),
@@ -114,7 +103,7 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
                     )
                 ),
                 refreshCowCooldown, addTimeByX(1),
-                AddedRanchEXP is 10 * MilkProduce,
+                AddedRanchEXP is 15 * MilkProduce,
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
                 expRanching(TotalEXPRanch),
                 write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'),
@@ -145,7 +134,7 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
                     )
                 ),
                 refreshSheepCooldown, addTimeByX(1),
-                AddedRanchEXP is 8 * WoolProduce,
+                AddedRanchEXP is 12 * WoolProduce,
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
                 expRanching(TotalEXPRanch),
                 write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'), addRanchingEXPByX(AddedRanchEXP));
@@ -162,7 +151,7 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
                     )
                 ),
                 refreshSheepCooldown, addTimeByX(1),
-                AddedRanchEXP is 8 * WoolProduce,
+                AddedRanchEXP is 12 * WoolProduce,
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
                 expRanching(TotalEXPRanch),
                 write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'), addRanchingEXPByX(AddedRanchEXP)))
@@ -191,7 +180,7 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
                     )
                 ),
                 refreshChickenCooldown, addTimeByX(1),
-                AddedRanchEXP is 7 * EggProduce,
+                AddedRanchEXP is 10 * EggProduce,
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
                 expRanching(TotalEXPRanch),
                 write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'),
@@ -209,7 +198,7 @@ doAction(Action, CowQty, SheepQty, ChickenQty) :-
                     )
                 ),
                 refreshChickenCooldown, addTimeByX(1),
-                AddedRanchEXP is 7 * EggProduce,
+                AddedRanchEXP is 10 * EggProduce,
                 write('Kamu mendapatkan '), write(AddedRanchEXP), write(' Ranch EXP!\n'),
                 expRanching(TotalEXPRanch),
                 write('Total Ranch EXP kamu adalah '), write(TotalEXPRanch), write(' Ranch EXP!\n'),

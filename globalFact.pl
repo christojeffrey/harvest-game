@@ -30,9 +30,7 @@
 :- dynamic(items/1).
 
 % --fakta mengenai quest--
-:- dynamic(checkQuest/0).
-:- dynamic(quest/6).
-:- dynamic(submitQuest/6).
+:- dynamic(quest/8).
 
 % --fakta mengenai time--
 :- dynamic(currentTime/1).
@@ -48,3 +46,6 @@
 :- dynamic(chickenCooldown/1).
 :- dynamic(sheepCooldown/1).
 :- dynamic(cowCooldown/1).
+
+% fakta untuk item yang bisa diquestkan
+questable_items(['tuna', 'salmon', 'catfish', 'corn', 'carrot', 'wheat', 'wool', 'egg', 'milk']).

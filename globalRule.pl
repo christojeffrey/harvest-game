@@ -20,6 +20,18 @@ checkInput(Question, Input, Comparison, ErrorMessage) :-
             fail
         ).
 
+% rule untuk menambah Gold
+
+addGoldbyX(X) :-
+    retract(gold(CurrentGold)),
+    NewGold is CurrentGold + X,
+    assertz(gold(NewGold)).
+
+subtractGoldbyX(X) :-
+    retract(gold(CurrentGold)),
+    NewGold is CurrentGold - X,
+    assertz(gold(NewGold)).
+
 % rule untuk menambah EXP (asumsi masukan EXP selalu valid ya)
 
 addMainEXPByX(X) :-
@@ -78,7 +90,21 @@ checkRanchingEXP :-
     write('Level ranching kamu saat ini adalah '), write(NewLevel),
     assertz(levelRanching(NewLevel)).
     
+% rule untuk mengurangi waktu ranching
+reduceOrRemoveCowCooldown :-
+    retract(cowCooldown(Timer)),
+    ((Timer > 1, NewTimer is Timer - 1, assertz(cowCooldown(NewTimer)));
+    (Timer =< 1, assertz(cowCooldown(0)))).
 
+reduceOrRemoveSheepCooldown :-
+    retract(sheepCooldown(Timer)),
+    ((Timer > 1, NewTimer is Timer - 1, assertz(sheepCooldown(NewTimer)));
+    (Timer =< 1, assertz(sheepCooldown(0)))).
+
+reduceOrRemoveChickenCooldown :-
+    retract(chickenCooldown(Timer)),
+    ((Timer > 1, NewTimer is Timer - 1, assertz(chickenCooldown(NewTimer)));
+    (Timer =< 1, assertz(chickenCooldown(0)))).
 
 %rule untuk time
 
