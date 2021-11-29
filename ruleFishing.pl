@@ -1,51 +1,45 @@
-:- include('globalFact.pl').
-:- include('globalRule.pl').
 
 fish:-
     playerLoc(X,Y),
     X1 is X-1,
     waterLoc(X1,Y),
     random(0,8,Z),
-    currentTime(T),
-    goFishing,!.
+    goFishing(Z),!.
 
 fish:-
     playerLoc(X,Y),
     X1 is X+1,
     waterLoc(X1,Y),
     random(0,8,Z),
-    currentTime(T),
-    goFishing,!.
+    goFishing(Z),!.
+
 fish:-  
     playerLoc(X,Y),
     Y1 is Y-1,
     waterLoc(X,Y1),
     random(0,8,Z),
-    currentTime(T),
-    goFishing,!.
+    goFishing(Z),!.
 
 fish:-
     playerLoc(X,Y),
     Y1 is Y+1,
     waterLoc(X,Y1),
     random(0,8,Z),
-    currentTime(T),
-    goFishing,!.
-
+    goFishing(Z),!.
 fish:-
     write('Maaf kamu tidak berada di dekat air, Pergi ke tempat air untuk memancing!!!'),
     nl,
     !.
 
-goFishing(X):-
-    findItem(ItName, TheItem),
+goFishing(_):-
+    findItem(EqName, TheItem),
     TheItem \== [], TheItem  = [TheItemName, TheItemCount, _], 
     TheItemCount <1,
     write('Maaf kamu ga punya fishing rod!!'),nl,
     write('Beli di Market dulu'),nl,
     !.
 
-goFishing(X):-
+goFishing(_):-
     levelFishing(_),
     totalItemCount(Total),
     Total=:=100,
@@ -55,7 +49,7 @@ goFishing(X):-
 %nilai 0-3 Zonk, 4-6 Tuna, 7-8 Salmon, 9=< catfish
 goFishing(X):-
     class(Class),
-    Classs == 'fisherman',
+    Class == 'fisherman',
     levelFishing(Z),
     X1 is X+Z,
     X1 < 4,
@@ -95,7 +89,7 @@ goFishing(X):-
     nl,
     write('        /\\ '),nl,
     write('      _/./  '),nl,
-    write('   ,-|    `-:.,-/ '),nl
+    write('   ,-|    `-:.,-/ '),nl,
     write('  > O )<)    _  ('),nl,
     write('  `-._  _.:\' `-.\\ '),nl,
     write('     `` \\ '),nl,
@@ -123,8 +117,6 @@ goFishing(X):-
     asserta(expFishing(Z1)),   
     changeItemCount('catfish',1),
     asserta(levelFishing(Y1)),!.
-
-
 
 %Memancing jika dia seorang fishbiasaer
 goFishing(X):-
