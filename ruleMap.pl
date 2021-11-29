@@ -196,6 +196,6 @@ a:-
     X1 is X-1,
     retractall(playerLoc(X,Y)),
     asserta(playerLoc(X1,Y)),
-    write('Berhasil melangkah kekiri 1 tile'),nl,!.
+    write('Berhasil melangkah ke kiri 1 tile'),nl,!.
 a :-
     write('kamu tidak bisa berpindah saat sedang eksplorasi\n').

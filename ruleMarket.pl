@@ -70,7 +70,7 @@ buy :-
             )
         )
     ),
-    write('masukkan nama item yang ingin kamu beli\n> '),
+    write('masukkan nama item yang ingin kamu beli(untuk seed, masukkan tanpa spasi)\n> '),
     read(ItemToBuy),
     proccesBuy(ItemToBuy),
     goalState,
@@ -81,6 +81,7 @@ buy :-
 
 % pembantu dari rule buy
 proccesBuy(ItemName) :-
+    addSpacertoSeed(PrevName, ItemName),
     priceList(ItemName, ItemPrice), !,
     write('Masukkan jumlah item yang ingin kamu beli \n> '),
     read(ItemBuyCount),
@@ -116,7 +117,7 @@ sell :-
         write('berikut barang-barang yang bisa kamu jual\n'),
         items(AllItems),
         helperShowAllSellItem(AllItems),
-        write('masukkan nama barang yang ingin kamu jual\n> '),
+        write('masukkan nama barang yang ingin kamu jual(untuk seed, masukkan tanpa spasi)\n> '),
         read(ItemNameToSell),
         processSell(ItemNameToSell)
     )),
@@ -146,7 +147,24 @@ helperShowAllSellItem(ItemList) :-
     ),
     helperShowAllSellItem(T).
 
-processSell(ItemName) :-
+addSpacertoSeed(PrevName,ItemName) :-
+    PrevName == 'cornseed' -> (
+        ItemName = 'corn seed'
+    );(
+        prevName == 'carrotseed' ->(
+            ItemName = 'carrot seed'
+        );(
+            prevName == 'wheatseed' -> (
+                ItemName = 'wheat seed'
+            );(
+                ItemName is PrevName
+            )
+        )
+    ).
+
+processSell(PrevName) :-
+    addSpacertoSeed(PrevName, ItemName),
+    write(ItemName),nl,
     priceList(ItemName, ItemPrice), !,
     write('Masukkan jumlah item yang ingin kamu jual \n> '),
     read(ItemSellCount),
