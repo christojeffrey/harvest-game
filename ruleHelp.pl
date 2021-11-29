@@ -14,25 +14,27 @@ help :-
 help :- 
     playerState('startGame'), !, 
     write('1. start     : Starts the game'), nl,
-    write('2. help      : Shows all available commands'),nl,
-    write('3. exitGame  : exit the game').
+    write('2. help      : Shows all available commands'), nl,
+    write('3. exitGame  : Exits the game').
     
 
 help :- 
     playerState('start'), !, 
-    write('1.  map     : Shows the map'), nl,
-    write('2.  status  : Shows your current status'), nl,
-    write('3.  w       : Moves one step to the north'), nl,
-    write('4.  s       : Moves one step to the south'), nl,
-    write('5.  a       : Moves one step to the west'), nl,
-    write('6.  d       : Moves one step to the east'), nl,
-    write('7.  dig     : (When on a farming tile) Digs on a tillable tile'), nl,
-    write('8.  plant   : (When on a farming tile) Plants a seed on a tilled tile'), nl,
-    write('9.  harvest : (When on a farming tile) Harvests crop from a planted tile'), nl,
-    write('10. fish    : (When near a body of water) Starts fishing'), nl,
-    write('11. ranch   : (When on a ranching tile) Starts ranching'), nl,
-    write('12. quest   : (When on a quest tile) Starts a quest'), nl,
-    write('13. help    : Shows all available commands').
+    write('1.  map       : Shows the map'), nl,
+    write('2.  status    : Shows your current status'), nl,
+    write('3.  w         : Moves one step to the north'), nl,
+    write('4.  s         : Moves one step to the south'), nl,
+    write('5.  a         : Moves one step to the west'), nl,
+    write('6.  d         : Moves one step to the east'), nl,
+    write('7.  dig       : (When on a farming tile) Digs on a tillable tile'), nl,
+    write('8.  plant     : (When on a farming tile) Plants a seed on a tilled tile'), nl,
+    write('9.  harvest   : (When on a farming tile) Harvests crop from a planted tile'), nl,
+    write('10. fish      : (When near a body of water) Starts fishing'), nl,
+    write('11. ranch     : (When on a ranching tile) Starts ranching'), nl,
+    write('12. quest     : (When on a quest tile) Starts a quest'), nl,
+    write('13. inventory : Accesses your inventory'), nl,
+    write('14. throwItem : Throws an item from your inventory'), nl,
+    write('15. help      : Shows all available commands').
 
 help :- 
     playerState('house'), !, 
