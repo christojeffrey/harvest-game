@@ -36,7 +36,7 @@ fish:-
     !.
 
 fish:-
-    write('Sudah malam, jangan memancing, bahaya jika tertidur di air'),nl,.
+    write('Sudah malam, jangan memancing, bahaya jika tertidur di air'),nl.
 
 goFishing(_):-
     findItem(_, TheItem),
