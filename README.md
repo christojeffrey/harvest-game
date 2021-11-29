@@ -1,101 +1,81 @@
-# LesgoLogkom
 
-Gede Prasidha Bhawarnawa 13520004\
-Jeremy S.O.N. Simbolon 13520042\
-Muhammad Risqi Firdaus 13520043\
+# Harvest iPhone13
+Program ini merupakan program permainan melalui gpu-prolog terminal.
+Game ini dibuat dengan bahasa prolog. Objektivitas dari game ini ialah untuk mengumpulkan uang seniali 2000. Game ini berakhir ketika dimenangkan atau hari telah mencapai 30 hari.
+
+## Daftar Isi
+* [Cara Menjalankan Program](#cara-menjalankan-program)
+* [Screenshots](#screenshoots)
+* [Pembagian Tugas](#pembagian-tugas)
+* [Daftar Fitur](#daftar-isi)
+
+
+## Cara Menjalankan Program
+Pertama masuk kedalam gpu-prolog via terminal
+```
+gpu-prolog
+```
+
+Setelah itu, masuk load game dengan 
+```
+[main].
+```
+
+## Screenshoots
+![tampilan awal game](https://i.imgur.com/7QC7XQm.png)
+
+## Pembagian Tugas
+
+Program ini disusun oleh group 3 K01, iPhone 13. 
+Gede Prasidha Bhawarnawa 13520004
+Start, quest, ranch, laporan
+
+Jeremy S.O.N. Simbolon 13520042
+Help, status, laporan
+
+Muhammad Risqi Firdaus 13520043
+ruleFishing, initMap, ruleMap, wasd, laporan
+
 Christopher Jeffrey 13520055
+startGame, inventory, throwItem, (dig, plant, harvest)  ruleFarm, house, market, laporan
 
-[link spek tubes](https://docs.google.com/document/d/15iaOJ1DnSfNMVwf6HU0i5PdTpW8opQNcFwil6gcQzq4/edit)
 
-> reminder, rule dan nama dari fakta diawali huruf kecil, variabel di fakta diawali huruf besar. emang gitu ketentuan di prolog.
 
-## urutan rule yang dapat diakses
+## Daftar Fitur
 
-`help.` bisa digunakan kapanpun. help yang diberikan tergantung playerState saat ini
+Berikut adalah fitur/command yang tersedia pada program :
 
-1. **rule yang harus diakses pertama kali**
+1.  map     : Shows the map
+2.  status  : Shows your current status
+3.  w       : Moves one step to the north
+4.  s       : Moves one step to the south
+5.  a       : Moves one step to the west
+6.  d       : Moves one step to the east
+7.  dig     : (When on a farming tile) Digs on a tillable tile
+8.  plant   : (When on a farming tile) Plants a seed on a tilled tile
+9.  harvest : (When on a farming tile) Harvests crop from a planted tile
+10. fish    : (When near a body of water) Starts fishing
+11. ranch   : (When on a ranching tile) Starts ranching
+12. quest   : (When on a quest tile) Starts a quest
+13. help    : Shows all available commands
+14. sleep      : Advances the day
+15. writeDiary : Adds an entry to your diary
+16. readDiary  : Reads previous diary entries
+17. exitHouse  : Exits the house
+18. buy        : Buys an item
+19. sell       : Sells an item
+20. exitMarket : Exits the market
+21. start     : Starts the game
+22. help      : Shows all available commands
+23. exitGame  : exit the game
+24. trowItem  : membuang item dari inventory
 
-   - `startGame.`\
-     menampilkan menu. udah itu aja.
 
-2. **rule yang dapat diakses setelah startGame**
+## Project Status
+Project is:  _no longer being worked on_
 
-   - `start.`\
-     menentukan class (fisherman, farmer, dkk). assert semua variabel juga.
-   - ` map.`
 
-3. **rule yang dapat diakses setelah start**\
-    _rule disini memiliki akses terhadap globalFact yang sudah di set oleh startGame_
-
-   - `status.`
-   - urusan map
-     `map.`
-     `w.`
-     `a.`
-     `s.`
-     `d.`
-   - `inventory.`
-     (masih gk ngerti bedanya apa sama item, tpi pokoknya ada inventory)
-
-4. **rule yang dapat diakses berdasarkan lokasi saat ini(LIHAT SPEK BUAT LEBIH JELASNYA)**\
-   _rule disini memiliki akses terhadap globalFact dan yang sudah di set oleh startGame, juga globalRule_ **dan juga rule yang dibuat untuk dirinya sendiri**
-   - `quest.`
-   - `market.`
-   - `house.`
-   - `ranch.`
-   - `fish.`
-   - urusan farm
-     `dig.`
-     `plant.`
-     `harvest.`
-
----
-
-`goalState.`\
-goal tercapai ketika player mempunyai uang dengan jumlah minimal tertentu. jadi,
-dilakukan pengecekan terhadap uang player ketika dia mendapatkan uang. Harusnya ini cuman terjadi di market.\
-`failState.`\
-fail tercapai kalau hari sudah menembus 1 tahun(ntah ngitungnya gimana). di implemen di dalam house.\
-
----
-
-## Item
-
-kita kunci dulu biar gk beda2 semua. jangan bikin sendiri2, nti beda2.
-ada **barang**. barang kita bikin gapunya level aja ya, ini pilihan barangnya.
-
-**FARM**
-
-- seed corn
-- seed carrot
-- seed wheat
-- corn
-- carrot
-- wheat
-
-**FISH**
-
-- tuna (common)
-- salmon (rare)
-- catfish (legend)
-
-**RANCH**
-
-- wool
-- egg
-- milk
-- chicken
-- cow
-- sheep
-
-kedua ada **equipment**. ini condong ke tool. sementara bikin dua dulu,
-
-- fishing rod, fishing rod sebagai tool buat mancing.
-- shovel, shovel sebagai tool buat farming.
-
-kalo bingung bedanya inventory sama item, item itu beneran nyimpennya, kek variabelnya. inventory itu commandnya.
-
----
-
-waktu membuat rule (misalnya quest), kan dapat membuat rule sendiri, nah itu silakan dibikin didalem file itu sendiri(misanya ruleQuest.pl), atau membuat file baru (factQuest.pl). kalau menurutmu bakal dipake sama rule2 lainnya, silakan taruh di globalFact(tambahi dibawah trus comment sebgai pembatas dulu ya, misal `% fakta quest`). ini berlaku juga buat globalRule.\
-pemilihan ini hampir murni biar rapi aja(tapi ya kalo rapi endingnya ngecode nya jadi lebih gampang).
+## Room for Improvement
+1. Membenarkan bug yang mungkin terjadi
+2. Menambahkan art dan keterangan yang lebih jelas.
+3. menambahkan musim.
