@@ -97,7 +97,7 @@ goFishing(X):-
 goFishing(X):-
     class('fisherman'),
     levelFishing(L),
-    L>2,
+    L>1,
     X1 is X+3,
     X1>8,
     random(3,5,J),
@@ -116,7 +116,7 @@ goFishing(X):-
 %Memancing jika dia seorang fishbiasaer
 goFishing(X):-
     levelFishing(Y),
-    Y>3,
+    Y>1,
     X1 is X+Y,
     X1 >3,
     X1<7,
@@ -132,7 +132,7 @@ goFishing(X):-
 
 goFishing(X):-
     levelFishing(Y),
-    Y>3,
+    Y>1,
     X1 is X+Y,
     X1>6,
     X1<9,
