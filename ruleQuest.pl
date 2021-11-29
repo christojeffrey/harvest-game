@@ -70,11 +70,11 @@ ongoingQuest :-
     nth(2, SecondList, SecondQtyPlayer),
     nth(2, ThirdList, ThirdQtyPlayer),
     write('Saat ini kamu memiliki :'), nl,
-    write('- '), write(FirstQty), write(' '), write(FirstItem), nl,
-    write('- '), write(SecondQty), write(' '), write(SecondItem), nl,
-    write('- '), write(ThirdQty), write(' '), write(ThirdItem), nl,
+    write('- '), write(FirstQtyPlayer), write(' '), write(FirstItem), nl,
+    write('- '), write(SecondQtyPlayer), write(' '), write(SecondItem), nl,
+    write('- '), write(ThirdQtyPlayer), write(' '), write(ThirdItem), nl,
     write('Jika kamu sudah memiliki jumlah item yang cukup,\n'),
-    write('Kamu dapat mengumpulkan quest dengan mengetik "submitQuest.').
+    write('Kamu dapat mengumpulkan quest dengan mengetik "submitQuest."').
 
 generateQuest :-
     generateThreeRandomIndexes(IdxFirst, IdxSecond, IdxThird),
@@ -111,6 +111,12 @@ checkItemQtys(FirstItem, SecondItem, ThirdItem, FirstQty, SecondQty, ThirdQty) :
     ThirdQtyPlayer > ThirdQty.
 
 submitQuest :-
+    ((quest(_,_,_,_,_,_,_,_), finalSubmitQuest);
+    ((\+ quest(_,_,_,_,_,_,_,_)), 
+    write('Kamu tidak punya quest, silahkan gunakan "quest" untuk mengambil quest baru.')
+    )).
+
+finalSubmitQuest :-
     retract(quest(IdxFirst, IdxSecond, IdxThird, FirstQty, SecondQty, ThirdQty, RewardGold, RewardEXP)),
     generateQuestItems(IdxFirst, IdxSecond, IdxThird, FirstItem, SecondItem, ThirdItem),
     ((\+ checkItemQtys(FirstItem, SecondItem, ThirdItem, FirstQty, SecondQty, ThirdQty), 

@@ -23,8 +23,8 @@ chickenMaxProduce(4,7).
 % rule untuk waktu ranching
 bonusEXPRanchClass(BonusEXP) :-
     class(Class), 
-    ((Class =:= rancher, BonusEXP is 10);
-    (Class =\= rancher, BonusEXP is 0)).
+    ((Class = rancher, BonusEXP is 10);
+    (\+ (Class = rancher), BonusEXP is 0)).
 
 refreshCowCooldown :-
     retract(cowCooldown(X)),
