@@ -8,7 +8,7 @@
 :- include('ruleStartGame.pl').
 
 %include help
-% :- include('ruleHelp.pl').
+:- include('ruleHelp.pl').
 
 % include rule yang dapat diakses setelah startGame
 :- include('start.pl').
@@ -25,3 +25,5 @@
 % include rule untuk Quest
 
 :- include('ruleQuest.pl').
+:- include('ruleFishing.pl').
+%include fakta2 tambahan untuk rule
