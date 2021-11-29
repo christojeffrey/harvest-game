@@ -51,19 +51,13 @@ throwItem :-
     write('jumlah yang kamu miliki adalah '), write(ItemCount), nl,
     write('masukkan jumlah yang ingin kamu buang\n> '),
     read(ItemThrowCount),
-    write('ItemThrowCount luar'),
-    write(ItemThrowCount),
-    ItemThrowCount > ItemCount -> (
+    (ItemThrowCount > ItemCount -> (
         write('jumlah yang akan kamu throw kurang dari yang kamu miliki\n')
     );(
         write('membuang item..'),nl,
-        write('ItemThrowCount'),
-        write(ItemThrowCount),
         ChangedAmount is -1 * ItemThrowCount,
-        write('ChangedAmount'),
-        write(ChangedAmount),
         changeItemCount(ItemName, ChangedAmount),
         write('berhasil membuang item!\n')
-    ).
+    )).
 
 throwItem :- write('kamu tidak bisa membuang item disini!'),nl.

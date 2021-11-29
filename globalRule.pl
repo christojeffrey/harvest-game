@@ -249,3 +249,19 @@ resetAllState :-
     retractall(waterLoc(_,_)),
     retractall(diggedLoc(_,_)),
     retractall(plantedLoc(_,_,_,_,_)).
+
+
+addSpacertoSeed(PrevName,ItemName) :-
+    PrevName == 'cornseed' -> (
+        ItemName = 'corn seed'
+    );(
+        prevName == 'carrotseed' ->(
+            ItemName = 'carrot seed'
+        );(
+            prevName == 'wheatseed' -> (
+                ItemName = 'wheat seed'
+            );(
+                ItemName = PrevName
+            )
+        )
+    ).

@@ -147,20 +147,7 @@ helperShowAllSellItem(ItemList) :-
     ),
     helperShowAllSellItem(T).
 
-addSpacertoSeed(PrevName,ItemName) :-
-    PrevName == 'cornseed' -> (
-        ItemName = 'corn seed'
-    );(
-        prevName == 'carrotseed' ->(
-            ItemName = 'carrot seed'
-        );(
-            prevName == 'wheatseed' -> (
-                ItemName = 'wheat seed'
-            );(
-                ItemName is PrevName
-            )
-        )
-    ).
+
 
 processSell(PrevName) :-
     addSpacertoSeed(PrevName, ItemName),
