@@ -111,7 +111,8 @@ reduceOrRemoveChickenCooldown :-
 % menambahkan time sebanyak X(yaitu input)
 addTimeByX(X) :- 
     retract(currentTime(Timenow)), 
-    Timenew is Timenow + X,  
+    Timenew is Timenow + X,
+    Timenew > 24 -> Timenew is 24;true,
     assertz(currentTime(Timenew)).
 
 
@@ -130,7 +131,7 @@ addTimeByX(X) :-
 % untuk saat ini, batas time dalam satu hari adalah 22 (kek 22.00, jam 10 malem jam)
 isCommandAllowed :-
     currentTime(X), 
-    X >= 24,!, write('harimu sudah habis! kerumah trus bobok yah\n'), fail.
+    X >= 22,!, write('harimu sudah habis! kerumah trus bobok yah\n'), fail.
 isCommandAllowed :-
     true.
 
